@@ -3,80 +3,846 @@
 
   switch ($link) {
     
-    case 'cadastros':
-      if ($link == "cadastros") {
-
-      include_once'menu/nav_sub_menu_estoque.html';
-      
-      }
-    break;
-    
-    //Inicio Cadastros Menu
-    case 'cadastroCliente':
-      if ($link == "cadastroCliente") {
-
-      include_once'menu/nav_sub_menu_estoque.html';
-      include_once'form_estoque_cliente.html';
-
-      }
-    break;
-
-
-    case 'cadastroFabricante':
-      if ($link == "cadastroFabricante") {
-
-      include_once'menu/nav_sub_menu_estoque.html';
-      include_once'form_estoque_fabricante.html';
-
-      }
-    break;
-
-
-    case 'cadastroFornecedor':
-      if ($link == "cadastroFornecedor") {
-
-      include_once'menu/nav_sub_menu_estoque.html';
-      include_once'form_estoque_fornecedor.html';
- 
-      }
-    break;
-
-    case 'cadastroCategoria':
-      if ($link == "cadastroCategoria") {
-
-      include_once'menu/nav_sub_menu_estoque.html';
-      include_once'form_estoque_categoria.html';
-
-      }
-    break;
-
-    case 'cadastroSubcategoria':
-      if ($link == "cadastroSubcategoria") {
-
-      include_once'menu/nav_sub_menu_estoque.html';
-      include_once'form_estoque_subcategoria.html';
-
-      }
-    break;
-
-    case 'cadastroProduto':
-      if ($link == "cadastroProduto") {
-
-      include_once'menu/nav_sub_menu_estoque.html';
-      include_once'form_estoque_produto.html';
-
-      }
-    break;
-
     case 'deposito':
       if ($link == "deposito") {
 
       include_once'menu/nav_sub_menu_deposito.html';
-      include_once'form_estoque_deposito.html';
 
+
+      // Consulta produto
+        $sql_select = "SELECT * FROM estoque_nf ORDER BY faturadoEm DESC LIMIT 10";
+
+        try{
+
+          $query_select = $conecta->prepare($sql_select);
+          $query_select->execute();
+
+          $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+          $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+        } catch(PDOexception $error_select) {
+          echo 'Erro ao selecionar'.$error_insert->getMessage();
+        }
+
+        if($count == '0'){
+
+          echo '<br /><br />Nada encontrado.';
+
+        } else {
+      ?>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" style='text-align: center;'>#</th>
+                <th scope="col" style='text-align: center;'>Data</th>
+                <th scope="col">Fornecedor</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+      <?php
+
+          foreach($resultado_query as $res){
+
+            $depCestaId   = $res['id'];
+            $idFornecedor = $res['id_fornecedor'];
+            $nf_numero    = $res['nf_numero'];
+            $faturadoEm   = $res['faturadoEm'];
+
+
+            //Consulta o nome do fornecedor
+            $sql_select_fornecedor = "SELECT * FROM prod_fornecedor WHERE id = $idFornecedor";
+
+            try{
+
+              $query_select_fornecedor = $conecta->prepare($sql_select_fornecedor);
+              $query_select_fornecedor->execute();
+
+              $resultado_query_fornecedor = $query_select_fornecedor->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch(PDOexception $error_select_fornecedor) {
+              echo 'Erro ao selecionar'.$error_insert_fornecedor->getMessage();
+            }
+
+            foreach($resultado_query_fornecedor as $res_fornecedor){
+
+              $idFornecedor    = $res_fornecedor['id'];
+              $fornecedorNome  = $res_fornecedor['fornecedor_nome'];
+
+            }
+            //Fim seleção produto
+
+            echo "<tbody> <tr> <td style='text-align: center;'>".$faturadoEm."</td> <td style='text-align: center;'>".$nf_numero."</td> <td>".$fornecedorNome."</td> <td>  </tr>";
+            
+          }
+        }
+      } 
+    break;
+
+    //<a href='deposito.php?link=editarOrcamento&controle=".$orcControle."'> <span class='material-icons' style='color: #000;'>mode_edit</span> </a> <a href='orcamento.php?link=pre_excluirOrcamento&controle=".$orcControle."'> <span class='material-icons' style='color: #000;'>delete</span> </a>
+
+
+    //Iniciio cadastroOrcamento
+    //Selecionar cliente
+    case 'entradaNF':
+
+      date_default_timezone_set('America/Sao_Paulo');
+      //Um número para controle do Orçamento
+      $controle = date ("YmdHis");
+      
+      include_once'controller/form_entradaNF_cadastrar_01.html';
+
+      break;
+      //Fim cadastroOrcamento
+
+
+    //Inicio SelecionarCliente
+    case 'selecionarFornecedor':
+
+      if(isset($_GET['idFornecedor'])){
+
+        $idDeposito    = $_GET['idDeposito'];
+        $idFornecedor  = $_GET['idFornecedor'];
+        $faturadoEm    = $_GET['faturadoEm'];
+        $nfNumero      = $_GET['nf_numero'];
+
+        //Selecionar deposito
+        $sql_select_deposito = "SELECT deposito_nome FROM estoque_deposito WHERE id = $idDeposito";
+
+        try{
+
+          $query_select_deposito = $conecta->prepare($sql_select_deposito);
+          $query_select_deposito->execute();
+
+          $resultado_query_deposito = $query_select_deposito->fetchAll(PDO::FETCH_ASSOC);
+          $count_deposito = $query_select_deposito->rowCount(PDO::FETCH_ASSOC);
+
+        } catch(PDOexception $error_select_deposito) {
+          echo 'Erro ao selecionar'.$error_insert_deposito->getMessage();
+        }
+
+        foreach($resultado_query_deposito as $res_deposito){
+
+          $depositoNome   = $res_deposito['deposito_nome'];   
+        }
+      
+
+        //Selecionar fornecedor
+        $sql_select_fornecedor = "SELECT fornecedor_nome FROM prod_fornecedor WHERE id = $idFornecedor";
+
+        try{
+
+          $query_select_fornecedor = $conecta->prepare($sql_select_fornecedor);
+          $query_select_fornecedor->execute();
+
+          $resultado_query_fornecedor = $query_select_fornecedor->fetchAll(PDO::FETCH_ASSOC);
+          $count_fornecedor = $query_select_fornecedor->rowCount(PDO::FETCH_ASSOC);
+
+        } catch(PDOexception $error_select) {
+          echo 'Erro ao selecionar'.$error_insert->getMessage();
+        }
+
+        foreach($resultado_query_fornecedor as $res_fornecedor){
+
+          $fornecedorNome   = $res_fornecedor['fornecedor_nome'];   
+        }
+      }
+
+      if ($fornecedorNome != null) {
+      
+        include_once'controller/form_entradaNF_cadastrar_02.html';
+
+      } else {
+        echo 'Erro ao selecionar o cliente.';
+      }
+
+      break;
+
+
+
+    case 'adicionarProduto':
+
+      $controle     = $_GET['controle'];
+      $idCliente    = $_GET['idCliente'];
+
+      if ($idCliente != null && $controle != null) {
+
+        $clienteNome  = $_GET['clienteNome'];
+        $idProduto    = $_GET['idProduto'];
+        $controle     = $_GET['controle'];
+        // echo $controle. '</br>';
+        // echo $idCliente. '</br>';
+        // echo $idProduto. '</br>';
+      
+        include_once'controller/form_orcamento_cadastrar_02.html';
+
+        if ($idProduto != null) {
+
+          date_default_timezone_set('America/Sao_Paulo');
+
+          $criadoEm       = date ("Y-m-d H:i:s");
+          $atualizadoEm   = date ("Y-m-d H:i:s");
+          $controle       = $_GET['controle'];
+          $idCliente      = $_GET['idCliente'];
+          $idProduto      = $_GET['idProduto'];
+          $quantProduto   = $_GET['quantProduto'];
+          $idSolucao      = $_GET['idSolucao'];
+
+          try{
+
+            $sql_insert  = "INSERT INTO orc_cesta (criadoEm, atualizadoEm, orc_controle, id_cliente, id_produto, orc_quant, id_solucao) "; 
+            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$controle', '$idCliente', '$idProduto', '$quantProduto', '$idSolucao')";
+
+            $conecta->exec($sql_insert);
+
+            include_once'controller/form_orcamento_lista_cesta.html';
+
+          } catch(PDOexception $error_insert) {
+            echo 'Erro ao cadastrar'.$error_insert->getMessage();
+          }
+
+        }
+        
+
+      } else {
+        echo 'Erro ao listar os produtos.';
+      }
+      break;
+      //Fim Selecionar Cliente
+
+
+    //Inicio Salvar orçamento
+    case 'orcamentoFechar':
+      if ($link == "orcamentoFechar") {
+
+        if(isset($_GET['controle'])){
+
+          date_default_timezone_set('America/Sao_Paulo');
+
+          $criadoEm       = date ("Y-m-d H:i:s");
+          $atualizadoEm   = date ("Y-m-d H:i:s");
+          $controle       = $_GET['controle'];
+          $idCliente      = $_GET['idCliente'];
+
+          try{
+
+            $sql_insert  = "INSERT INTO orc_fechado (criadoEm, atualizadoEm, orc_controle, id_cliente) "; 
+            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$controle', '$idCliente')";
+
+            $conecta->exec($sql_insert);
+
+            include_once'menu/nav_sub_menu_estoque.html';
+
+            echo "<span style='color: black; margin-left: 60px;'> Orçamento fechado com sucesso!</span></br></br></br>";
+
+          } catch(PDOexception $error_insert) {
+            echo 'Erro ao cadastrar'.$error_insert->getMessage();
+          }
+
+        }
       }
     break;
-    //Fim Cadastro Menu
+
+
+    //Inicio Editar
+    //Editar orcamento
+    case 'editarOrcamento':
+      if ($link == "editarOrcamento") {
+
+        if(isset($_GET['controle'])){
+
+          $controle  = $_GET['controle'];
+
+          // Consulta produto
+          $sql_select = "SELECT * FROM orc_cesta WHERE orc_controle = $controle";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo '<br /><br />Nada encontrado.';
+
+          } else {
+        ?>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Sub-Categoria</th>
+                  <th scope="col">Fabricante</th>
+                  <th scope="col" style='text-align: center;'>Quant.</th>
+                  <th></th>
+                </tr>
+              </thead>
+        <?php
+
+            foreach($resultado_query as $res){
+
+              $orcCestaId   = $res['id'];
+              $idCliente    = $res['id_cliente'];
+              $orcControle  = $res['orc_controle'];
+              $idProduto    = $res['id_produto'];
+              $orcQuant     = $res['orc_quant'];
+
+
+                //Inicio da seleção cliente
+                $sql_select_cliente = "SELECT * FROM cliente WHERE id = $idCliente";
+
+                try{
+
+                  $query_select_cliente = $conecta->prepare($sql_select_cliente);
+                  $query_select_cliente->execute();
+
+                  $resultado_query_cliente = $query_select_cliente->fetchAll(PDO::FETCH_ASSOC);
+
+                } catch(PDOexception $error_select_cliente) {
+                  echo 'Erro ao selecionar'.$error_insert_cliente->getMessage();
+                }
+
+                foreach($resultado_query_cliente as $res_cliente){
+
+                    $clienteNome   = $res_cliente['cliente_nome'];;
+
+                }
+                //Fim seleção cliente
+
+
+              //Inicio da seleção da produto
+              $sql_select_prod = "SELECT * FROM produtos WHERE id = $idProduto";
+
+              try{
+
+                $query_select_prod = $conecta->prepare($sql_select_prod);
+                $query_select_prod->execute();
+
+                $resultado_query_prod = $query_select_prod->fetchAll(PDO::FETCH_ASSOC);
+
+              } catch(PDOexception $error_select_prod) {
+                echo 'Erro ao selecionar'.$error_insert_prod->getMessage();
+              }
+
+              foreach($resultado_query_prod as $res_prod){
+
+                $produtoId            = $res_prod['id'];
+                $produtoModelo        = $res_prod['prod_modelo'];
+                $produtoDescricao     = $res_prod['prod_descricao'];
+                $produtoSubCategoria  = $res_prod['id_subcategoria'];
+                $produtoFabricante    = $res_prod['id_fabricante'];
+
+                //Inicio da seleção da SubCategoria
+                $sql_select_subcat = "SELECT * FROM prod_sub_categoria WHERE id = $produtoSubCategoria";
+
+                try{
+
+                  $query_select_subcat = $conecta->prepare($sql_select_subcat);
+                  $query_select_subcat->execute();
+
+                  $resultado_query_subcat = $query_select_subcat->fetchAll(PDO::FETCH_ASSOC);
+
+                } catch(PDOexception $error_select_subcat) {
+                  echo 'Erro ao selecionar'.$error_insert_subcato->getMessage();
+                }
+
+                foreach($resultado_query_subcat as $res_subcat){
+
+                    $subcatNome = $res_subcat['sub_categoria_nome'];
+
+                }
+                //Fim seleção subCategoria
+
+
+                //Inicio da seleção da fabricante
+                $sql_select_fabr = "SELECT * FROM prod_fabricante WHERE id = $produtoFabricante";
+
+                try{
+
+                  $query_select_fabr = $conecta->prepare($sql_select_fabr);
+                  $query_select_fabr->execute();
+
+                  $resultado_query_fabr = $query_select_fabr->fetchAll(PDO::FETCH_ASSOC);
+
+                } catch(PDOexception $error_select_fabr) {
+                  echo 'Erro ao selecionar'.$error_insert_fabr->getMessage();
+                }
+
+                foreach($resultado_query_fabr as $res_fabr){
+
+                    $fabrNome   = $res_fabr['fabricante_nome'];
+
+                }
+                //Fim seleção fabricante
+
+
+              }
+              //Fim seleção produto
+
+              echo "<tbody> <tr> <td>".$produtoModelo."</td> <td>".$produtoDescricao."</td> <td>".$subcatNome."</td> <td>".$fabrNome."</td> <td style='text-align: center;'>".$orcQuant."</td> <td> <a href='orcamento.php?link=editarOrcItem&orcCestaId=".$orcCestaId."'> <span class='material-icons' style='color: #000;'>mode_edit</span> </a> <a href='orcamento.php?link=pre_excluirItemCesta&orcCestaId=".$orcCestaId."&controle=".$orcControle."&produtoModelo=".$produtoModelo."'> <span class='material-icons' style='color: #000;'>delete</span> </a> </tr>";
+              
+            }
+          }
+        echo"
+          <form action='orcamento.php' method=get >
+            <input type='hidden' class='form-control is-valid' id='validationServer01' name='link' value='adicionarItemCesta' >
+            <input type='hidden' class='form-control is-valid' id='validationServer02' name='idCliente' value=' ".$idCliente." ' >
+            <input type='hidden' class='form-control is-valid' id='validationServer03' name='clienteNome' value=' ".$clienteNome." ' >
+            <input type='hidden' class='form-control is-valid' id='validationServer04' name='controle' value=' ".$controle." ' >
+            <button class='btn btn-primary' type='submit' style='padding-top: 15px;'>Adicionar Item</button>
+          </form>
+        ";
+        }
+      }
+
+      break;
+
+
+    //Editar Cesta
+    case 'editarOrcItem':
+      if ($link == "editarOrcItem") {
+
+        if(isset($_GET['orcCestaId'])){
+
+          $orcCestaId = $_GET['orcCestaId'];
+
+          // Consulta empresas
+          $sql_select = "SELECT * FROM orc_cesta WHERE id = $orcCestaId";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          foreach($resultado_query as $res){
+
+            $orcCestaId     = $res['id'];
+            $orcControle    = $res['orc_controle'];
+            $idProduto      = $res['id_produto'];
+            $orcQuantidade  = $res['orc_quant'];
+            $idSolucao      = $res['id_solucao'];
+
+
+            //Inicio da seleção da produto
+            $sql_select_prod = "SELECT * FROM produtos WHERE id = $idProduto";
+
+            try{
+
+              $query_select_prod = $conecta->prepare($sql_select_prod);
+              $query_select_prod->execute();
+
+              $resultado_query_prod = $query_select_prod->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch(PDOexception $error_select_prod) {
+              echo 'Erro ao selecionar'.$error_insert_prod->getMessage();
+            }
+
+            foreach($resultado_query_prod as $res_prod){
+
+                $produtoModelo   = $res_prod['prod_modelo'];
+
+            }
+            //Fim seleção produto
+
+            //Inicio da seleção da solução
+            $sql_select_sol = "SELECT * FROM orc_solucao WHERE id = $idSolucao";
+
+            try{
+
+              $query_select_sol = $conecta->prepare($sql_select_sol);
+              $query_select_sol->execute();
+
+              $resultado_query_sol = $query_select_sol->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch(PDOexception $error_select_sol) {
+              echo 'Erro ao selecionar'.$error_insert_sol->getMessage();
+            }
+
+            foreach($resultado_query_sol as $res_sol){
+
+                $solucaoNome   = $res_sol['solucao_nome'];
+
+            }
+            //Fim seleção produto
+
+          }
+
+          include_once'form_edit_orc_cesta.html';
+      
+        } else {
+          echo 'Nada';
+        }
+      }
+      break;
+
+
+
+    //Atualizar Cesta Item
+    case 'atualizarOrcCestaItem':
+      if ($link == "atualizarOrcCestaItem") {
+
+        if(isset($_GET['orcCestaId'])){
+
+          date_default_timezone_set('America/Sao_Paulo');
+          $atualizadoEmR    = date ("Y-m-d H:i:s");
+          $orcCestaIdR      = $_GET['orcCestaId'];
+          $orcControleR     = $_GET['orcControle'];
+          $idProdutoR       = $_GET['idProduto'];
+          $idSolucaoR       = $_GET['idSolucao'];
+          $orcQuantidadeR   = $_GET['orcQuantidade'];
+
+          try{
+
+            $sql_update  = "UPDATE orc_cesta SET atualizadoEm = '".$atualizadoEmR."', id_produto = '".$idProdutoR."', orc_quant = '".$orcQuantidadeR."', orc_quant = '".$orcQuantidadeR."', id_solucao = '".$idSolucaoR."' WHERE id = ".$orcCestaIdR." "; 
+
+            $conecta->exec($sql_update);
+
+            echo '<span> Atualizado com sucesso!</span></br></br></br>';
+
+            echo '<a href="orcamento.php?link=editarOrcamento&controle='.$orcControleR.'">Ver todos itens</a>';
+
+          } catch(PDOexception $error_update) {
+            echo 'Erro ao atualizar'.$error_update->getMessage();
+          }
+
+        }  else {
+          echo 'Nada';
+        }
+      }
+      break;
+
+
+    //Inicio pre-excluirProduto
+    case 'pre_excluirItemCesta':
+      if ($link == "pre_excluirItemCesta") {
+
+        if(isset($_GET['orcCestaId'])){
+
+          $orcCestaId     = $_GET['orcCestaId'];
+          $produtoModelo  = $_GET['produtoModelo'];
+          $controle       = $_GET['controle'];
+
+          // Consulta categoias
+          $sql_select = "SELECT * FROM orc_cesta WHERE id = $orcCestaId";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          foreach($resultado_query as $res){
+
+              $orcCestaId     = $res['id'];
+
+              echo "
+                <div class='col-md-12 mb-3'>
+                  <h1>Item</h1>
+                  <h4>Tem certeza que deseja excluir este item?</h4>
+                </div>
+                <div class='col-md-12 mb-3'>
+                  <form name='item' action='orcamento.php' method='GET'>
+                    <div class='form-row'>
+                      <div class='col-md-3 mb-3'>
+                        <span class='form-control'>".$produtoModelo."</span>
+                      </div>
+                      <div class='col-md-3 mb-3'>
+                        <input type='hidden' class='form-control is-valid' id='validationServer01' name='link' value='excluirOrcItemCesta' >
+                        <input type='hidden' class='form-control is-valid' id='validationServer02' name='controle' value='".$controle."' >
+                        <input type='hidden' class='form-control is-valid' id='validationServer03' name='orcCestaId' value=".$orcCestaId." >
+                      </div>
+                      <div class='col-md-2' mb-3>
+                        <button class='btn btn-primary' type='submit' style='padding-top: 15px;'>Excluir</button>
+                      </div>
+                    </div>
+                  </form>
+                  <form action='orcamento.php' method=get >
+                    <input type='hidden' class='form-control is-valid' id='validationServer04' name='controle' value='".$controle."' >
+                    <input type='hidden' class='form-control is-valid' id='validationServer05' name='orcCestaId' value='".$orcCestaId."' >
+                    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='editarOrcamento' >
+                    <button class='btn btn-primary' type='submit' style='padding-top: 15px;'>Não</button>
+                  </form>
+                </div>";
+          }
+      
+        } else {
+          echo 'Nada';
+        }
+      
+      }
+    break;
+    //Fim pre-excluir
+
+
+
+    //Inicio Excluir
+    //Inicio excluirOrcItemCesta
+    case 'excluirOrcItemCesta':
+      if ($link == "excluirOrcItemCesta") {
+
+        if(isset($_GET['orcCestaId'])){
+
+          date_default_timezone_set('America/Sao_Paulo');
+
+          $orcCestaId = $_GET['orcCestaId'];
+          $controle   = $_GET['controle'];
+
+          try{
+
+            $sql_delete  = "DELETE FROM orc_cesta WHERE id = '$orcCestaId'"; 
+
+            $conecta->exec($sql_delete);
+
+            echo '<span> Item excluido com sucesso!</span></br></br></br>';
+
+            echo '<a href="orcamento.php?link=editarOrcamento&controle='.$controle.' ">Ver todos</a>';
+
+          } catch(PDOexception $error_delete) {
+            echo 'Erro ao excluir'.$error_delete->getMessage();
+          }
+
+        }
+      }
+    break;
+
+
+    //Inicio SelecionarCliente
+    case 'adicionarItemCesta':
+
+      if(isset($_GET['idCliente'])){
+
+        $idCliente  = $_GET['idCliente'];
+        $controle  = $_GET['controle'];
+
+        //Seleciona o nome do cliente
+        $sql_select = "SELECT cliente_nome FROM cliente WHERE id = $idCliente";
+
+        try{
+
+          $query_select = $conecta->prepare($sql_select);
+          $query_select->execute();
+
+          $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+          $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+        } catch(PDOexception $error_select) {
+          echo 'Erro ao selecionar'.$error_insert->getMessage();
+        }
+
+        foreach($resultado_query as $res){
+
+          $clienteNome   = $res['cliente_nome'];   
+        }
+      }
+
+      if ($clienteNome != null) {
+      
+        include_once'controller/form_orcamento_cadastrar_item_cesta_02.html';
+
+      } else {
+        echo 'Erro ao selecionar o cliente.';
+      }
+
+      break;
+
+
+    case 'adicionarProdutoItemCesta':
+
+      $controle     = $_GET['controle'];
+      $idCliente    = $_GET['idCliente'];
+
+      if ($idCliente != null && $controle != null) {
+
+        $clienteNome  = $_GET['clienteNome'];
+        $idProduto    = $_GET['idProduto'];
+        $controle     = $_GET['controle'];
+        // echo $controle. '</br>';
+        // echo $idCliente. '</br>';
+        // echo $idProduto. '</br>';
+      
+        include_once'controller/form_orcamento_cadastrar_item_cesta_02.html';
+
+        if ($idProduto != null) {
+
+          date_default_timezone_set('America/Sao_Paulo');
+
+          $criadoEm       = date ("Y-m-d H:i:s");
+          $atualizadoEm   = date ("Y-m-d H:i:s");
+          $controle       = $_GET['controle'];
+          $idCliente      = $_GET['idCliente'];
+          $idProduto      = $_GET['idProduto'];
+          $quantProduto   = $_GET['quantProduto'];
+          $idSolucao      = $_GET['idSolucao'];
+
+          try{
+
+            $sql_insert  = "INSERT INTO orc_cesta (criadoEm, atualizadoEm, orc_controle, id_cliente, id_produto, orc_quant, id_solucao) "; 
+            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$controle', '$idCliente', '$idProduto', '$quantProduto', '$idSolucao')";
+
+            $conecta->exec($sql_insert);
+
+            include_once'controller/form_orcamento_lista_cesta.html';
+
+          } catch(PDOexception $error_insert) {
+            echo 'Erro ao cadastrar'.$error_insert->getMessage();
+          }
+
+        }
+        
+
+      } else {
+        echo 'Erro ao listar os produtos.';
+      }
+      break;
+      //Fim Selecionar Cliente
+
+
+    //Inicio pre-excluirOrcamento
+    case 'pre_excluirOrcamento':
+      if ($link == "pre_excluirOrcamento") {
+
+        if(isset($_GET['controle'])){
+
+          $controle       = $_GET['controle'];
+
+          echo "
+                <div class='col-md-12 mb-3'>
+                  <h1>Item</h1>
+                  <h4>Tem certeza que deseja excluir este Orçamento?</h4>
+                </div>
+                <div class='col-md-12 mb-3'>
+                  <form name='item' action='orcamento.php' method='GET'>
+                    <div class='form-row'>
+                      <div class='col-md-3 mb-3'>
+                        <input type='hidden' class='form-control is-valid' id='validationServer01' name='link' value='excluirOrcamento' >
+                        <input type='text' class='form-control is-valid' id='validationServer02' name='controle' value='".$controle."' >
+                      </div>
+                      <div class='col-md-2' mb-3>
+                        <button class='btn btn-primary' type='submit' style='padding-top: 15px;'>Excluir</button>
+                      </div>
+                    </div>
+                  </form>
+                  <form action='orcamento.php' method=get >
+                    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='orcamentos' >
+                    <button class='btn btn-primary' type='submit' style='padding-top: 15px;'>Não</button>
+                  </form>
+                </div>";
+
+          }
+      
+        } else {
+          echo 'Nada';
+        }
+      
+      
+    break;
+    //Fim pre-excluir
+
+
+
+    //Inicio Excluir
+    //Inicio excluirOrcamento
+    case 'excluirOrcamento':
+      if ($link == "excluirOrcamento") {
+
+        if(isset($_GET['controle'])){
+
+          date_default_timezone_set('America/Sao_Paulo');
+
+          $controle   = $_GET['controle'];
+
+          try{
+
+            $sql_delete  = "DELETE FROM orc_cesta WHERE orc_controle = '$controle'"; 
+
+            $conecta->exec($sql_delete);
+
+          } catch(PDOexception $error_delete) {
+            echo 'Erro ao excluir'.$error_delete->getMessage();
+          }
+
+          try{
+
+            $sql_delete  = "DELETE FROM orc_fechado WHERE orc_controle = '$controle'"; 
+
+            $conecta->exec($sql_delete);
+
+            echo '<span> Orçamento excluido com sucesso!</span></br></br></br>';
+
+            echo '<a href="orcamento.php?link=orcamentos">Voltar</a>';
+
+          } catch(PDOexception $error_delete) {
+            echo 'Erro ao excluir'.$error_delete->getMessage();
+          }
+
+        }
+      }
+    break;
+
+
+  //TODO excluir item do orccesta e adicionar item
+  //TODO INCLUIR CODIGO FABRICANTE E CODIGO ZAFIRO PARA OS PRODUTOS editarOrcItem
+
+
+
+
+    // case 'selecionarCliente':
+      
+    //   if ($link == "selecionarCliente") {
+
+    //     if(isset($_GET['idCliente'])){
+
+    //       date_default_timezone_set('America/Sao_Paulo');
+
+    //       $criadoEm       = date ("Y-m-d H:i:s");
+    //       $atualizadoEm   = date ("Y-m-d H:i:s");
+    //       $idCliente      = $_GET['clienteNome'];
+    //       $clienteCelular = $_GET['clienteCelular'];
+    //       $clienteEmail   = $_GET['clienteEmail'];
+    //       $clienteCPF     = $_GET['clienteCPF'];
+
+    //       try{
+
+    //         $sql_insert  = "INSERT INTO orc_cesta (criadoEm, atualizadoEm, cliente_nome, cliente_celular, cliente_email, cliente_cpf) "; 
+    //         $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$clienteNome', '$clienteCelular', '$clienteEmail', '$clienteCPF')";
+
+    //         $conecta->exec($sql_insert);
+
+    //         include_once'menu/nav_sub_menu_estoque.html';
+
+    //         echo "<span style='color: black; margin-left: 60px;'> Cliente cadastrado com sucesso!</span></br></br></br>";
+
+    //       } catch(PDOexception $error_insert) {
+    //         echo 'Erro ao cadastrar'.$error_insert->getMessage();
+    //       }
+
+    //     }
+    //   }
+
+
+
+
+      //break;
 
 
     //Inicio Cadastro 
@@ -253,7 +1019,6 @@
 
           $criadoEm       = date ("Y-m-d H:i:s");
           $atualizadoEm   = date ("Y-m-d H:i:s");
-          $prodCodigo     = $_GET['proCodigo'];
           $idSubcategoria = $_GET['idSubcategoria'];
           $prodModelo     = $_GET['prodModelo'];
           $prodDescricao  = $_GET['prodDescricao'];
@@ -263,8 +1028,8 @@
 
           try{
 
-            $sql_insert  = "INSERT INTO produtos (criadoEm, atualizadoEm, prod_codigo, id_subcategoria, prod_modelo, prod_descricao, prod_custo, id_fabricante, id_fornecedor) "; 
-            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$prodCodigo', '$idSubcategoria', '$prodModelo', '$prodDescricao', '$prodCusto', '$idFabricante', '$idFornecedor')";
+            $sql_insert  = "INSERT INTO produtos (criadoEm, atualizadoEm, id_subcategoria, prod_modelo, prod_descricao, prod_custo, id_fabricante, id_fornecedor) "; 
+            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$idSubcategoria', '$prodModelo', '$prodDescricao', '$prodCusto', '$idFabricante', '$idFornecedor')";
 
             $conecta->exec($sql_insert);
 
@@ -280,91 +1045,6 @@
       }
     break;
     //Fim Cadastro Salvar
-
-    //Inicio Salvar Produto-Deposito
-    case 'salvarProdutDeposito':
-      if ($link == "salvarProdutDeposito") {
-
-        if(isset($_GET['idProduto'])){
-
-          $idProduto      = $_GET['idProduto'];
-
-          // Consulta pessoas
-        $sql_select = "SELECT * FROM prod_deposito WHERE id_produto = $idProduto";
-
-        try{
-
-          $query_select = $conecta->prepare($sql_select);
-          $query_select->execute();
-
-          $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
-          $count = $query_select->rowCount(PDO::FETCH_ASSOC);
-
-        } catch(PDOexception $error_select) {
-          echo 'Erro ao selecionar'.$error_insert->getMessage();
-        }
-
-        if($count == '0'){
-
-          date_default_timezone_set('America/Sao_Paulo');
-
-          $criadoEm       = date ("Y-m-d H:i:s");
-          $atualizadoEm   = date ("Y-m-d H:i:s");
-          $idProduto      = $_GET['idProduto'];
-          $depQuant       = $_GET['depQuant'];
-         
-
-          try{
-
-            $sql_insert  = "INSERT INTO prod_deposito (criado_em, atualizado_em, id_produto, dep_quant) "; 
-            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$idProduto', '$depQuant')";
-
-            $conecta->exec($sql_insert);
-
-            include_once'menu/nav_sub_menu_estoque.html';
-
-            echo "<span style='color: black; margin-left: 60px;'> Estoque atualizado com sucesso!</span></br></br></br>";
-
-          } catch(PDOexception $error_insert) {
-            echo 'Erro ao cadastrar'.$error_insert->getMessage();
-          }
-
-        } else {
-  
-          foreach($resultado_query as $res){
-
-            $idR        = $res['id'];
-            $idProdutoR = $res['id_produto'];
-            $dep_quantR = $res['dep_quant'];
-
-          }
-
-          date_default_timezone_set('America/Sao_Paulo');
-
-          $atualizadoEmR  = date ("Y-m-d H:i:s");
-          $idProduto      = $_GET['idProduto'];
-          $depQuant       = $_GET['depQuant'];
-          $depQuantAtual  = $dep_quantR + $depQuant;
-
-          try{
-
-            $sql_update  = "UPDATE prod_deposito SET atualizado_em = '".$atualizadoEmR."', id_produto = '".$idProduto."', dep_quant = '".$depQuantAtual."' WHERE id_produto = ".$idProduto." "; 
-
-            $conecta->exec($sql_update);
-
-            echo '<span> Estoque atualizado com sucesso!</span></br></br></br>';
-
-          } catch(PDOexception $error_update) {
-            echo 'Erro ao atualizar'.$error_update->getMessage();
-          }
-
-        }
-        
-
-        }
-      }
-    break;
-    //Fim Cadastro Salvar Produto-Deposito
 
 
     //Inicio Constultas
@@ -745,11 +1425,10 @@
               </tr>
             </thead>
   <?php
-          $item = 1;
+
           foreach($resultado_query as $res){
 
             $produtoId            = $res['id'];
-            $produtoItem          = $item ++;
             $produtoModelo        = $res['prod_modelo'];
             $produtoDescricao     = $res['prod_descricao'];
             $produtoSubCategoria  = $res['id_subcategoria'];
@@ -801,7 +1480,7 @@
             //Fim seleção fabricante
 
 
-            echo "<tbody> <tr> <th scope='row'>".$produtoItem."</th> <td>".$produtoModelo."</td> <td>".$produtoDescricao."</td> <td>".$subcatNome."</td> <td>".$fabrNome."</td> <td>".$produtoCusto."</td> <td> <a href='estoque.php?link=editarProduto&id=".$produtoId."'> <span class='material-icons' style='color: #000;'>mode_edit</span> </a> <a href='estoque.php?link=pre_excluirProduto&id=".$produtoId."'> <span class='material-icons' style='color: #000;'>delete</span> </a> </td> </tr>";
+            echo "<tbody> <tr> <th scope='row'>".$produtoId."</th> <td>".$produtoModelo."</td> <td>".$produtoDescricao."</td> <td>".$subcatNome."</td> <td>".$fabrNome."</td> <td>".$produtoCusto."</td> <td> <a href='estoque.php?link=editarProduto&id=".$produtoId."'> <span class='material-icons' style='color: #000;'>mode_edit</span> </a> <a href='estoque.php?link=pre_excluirProduto&id=".$produtoId."'> <span class='material-icons' style='color: #000;'>delete</span> </a> </td> </tr>";
             
           }
         }

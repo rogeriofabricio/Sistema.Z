@@ -1,0 +1,109 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Novo Orçamento</h1>
+
+<form form name='orcamento' action='orcamento.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-12 mb-3">
+      <label for="validationCustom02" class="form-control"><?php echo $clienteNome ?></label>
+    </div>
+  </div>
+  <div class="form-row">
+
+    <div class="col-md-4 mb-3">
+      <label for="exampleFormControlSelect1"  class="corTitulo">Solução</label>
+      <select class="form-control" id="idSolucao"  name="idSolucao">
+        <?php
+
+          // Consulta produtos
+          $sql_select = "SELECT * FROM orc_solucao ORDER BY solucao_nome ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $solucaoId    = $res['id'];
+              $solucaoNome  = $res['solucao_nome'];
+
+              echo "<option value='$solucaoId'>$solucaoNome</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label for="exampleFormControlSelect2"  class="corTitulo">Produto</label>
+      <select class="form-control" id="idProduto"  name="idProduto">
+        <?php
+
+          // Consulta produtos
+          $sql_select = "SELECT * FROM produtos ORDER BY prod_modelo ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $produtoId      = $res['id'];
+              $produtoModelo  = $res['prod_modelo'];
+
+              echo "<option value='$produtoId'>$produtoModelo</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02" class="corTitulo">Quantidade</label>
+      <input type="text" class="form-control" id="validationCustom02" name="quantProduto" required>
+    </div>
+  </div>
+  <div class="col-md-2 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer03' name='clienteNome' value='<?php echo $clienteNome ?>' >
+    <input type='hidden' class='form-control is-valid' id='validationServer04' name='idCliente' value='<?php echo $idCliente ?>' >
+    <input type='hidden' class='form-control is-valid' id='validationServer05' name='controle' value='<?php echo $controle ?>' >
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='adicionarProdutoItemCesta' >
+    <button class="btn btn-primary" type="submit">Adicionar Item</button>
+  </div>
+</form>

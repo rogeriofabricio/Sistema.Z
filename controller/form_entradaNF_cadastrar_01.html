@@ -1,0 +1,106 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Entrada de Produtos Por NF</h1>
+
+<form form name='deposito' action='deposito.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="exampleFormControlSelect1"  class="corTitulo">Estoque</label>
+      <select class="form-control" id="idDeposito"  name="idDeposito">
+        <?php
+
+          // Consulta depósito
+          $sql_select = "SELECT * FROM estoque_deposito ORDER BY deposito_nome ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $depositoId    = $res['id'];
+              $depositoNome  = $res['deposito_nome'];
+              $depositoNick  = $res['deposito_nickname'];
+
+              echo "<option value='$depositoId'>$depositoNick - $depositoNome</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="exampleFormControlSelect1"  class="corTitulo">Fornecedor</label>
+      <select class="form-control" id="idFornecedor"  name="idFornecedor">
+        <?php
+
+          // Consulta fornecedor
+          $sql_select = "SELECT * FROM prod_fornecedor ORDER BY fornecedor_nome ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $fornecedorId    = $res['id'];
+              $fornecedorNome  = $res['fornecedor_nome'];
+
+              echo "<option value='$fornecedorId'>$fornecedorNome</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom02" class="corTitulo">Data do Faturamento</label>
+      <input type="text" class="form-control" id="validationCustom02" name="faturadoEm" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom03" class="corTitulo">Número da NF</label>
+      <input type="text" class="form-control" id="validationCustom03" name="nf_numero" required>
+    </div>
+  </div>
+
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='selecionarFornecedor' >
+    <button class="btn btn-primary" type="submit">Selecionar</button>
+  
+  </div>
+
+</form>
