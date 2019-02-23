@@ -1,0 +1,5 @@
+1;Prospecto
+2;Aguard. Visita ou Plantas
+4;Desenvolvendo Proposta
+5;Proposta Pronta
+6;Em Negociação

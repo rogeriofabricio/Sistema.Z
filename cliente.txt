@@ -1,0 +1,9 @@
+3;Cliente Teste 2;75999999999;cliente@cliente.com;12345612312
+4;Cliente Teste 3;75999999999;cliente@cliente.com;12345612312
+6;Cliente Teste 5;75999999999;cliente@cliente.com;12345612312
+7;Cliente Teste 6;75999999999;cliente@cliente.com;12345612312
+8;Cliente Teste 7;75999999999;cliente@cliente.com;12345612312
+9;Cliente Teste 8;75999999999;cliente@cliente.com;12345612312
+10;Cliente Teste 9;75999999999;cliente@cliente.com;12345612312
+1;Cliente Teste A;7588888888;clientea@cliente.com;12345612310
+2;Cliente Teste B;75999999999;cliente@cliente.com;12345612312

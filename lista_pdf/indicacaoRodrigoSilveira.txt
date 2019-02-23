@@ -1,0 +1,3 @@
+Paulo Ricardo;7189896767;paulo@paulo.com.br;Murano;Prospecto;Sem detalhes
+Pedro Carneiro;7598987676;pedro@pedro.com.br;Bangalay;Aguard. Visita ou Plantas;Sem detalhes
+Fabricio Loiola;7598766789;fabricio@fabricio.com.br;Campanario;Desenvolvendo Proposta;Sem detalhes a acrescentar.

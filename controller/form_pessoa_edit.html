@@ -1,0 +1,122 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Editar Pessoa</h1>
+
+<form name='pessoa' action='pessoas.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Nome</label>
+      <input type="text" class="form-control" id="validationCustom01" name="pessoaNome" value="<?php echo $pessoaNome ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02" class="corTitulo">Telefone</label>
+      <input type="text" class="form-control" id="validationCustom02" name="pessoaTel" value="<?php echo $pessoaTel ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom03" class="corTitulo">E-mail</label>
+      <input type="text" class="form-control" id="validationCustom03" name="pessoaEmail" value="<?php echo $pessoaEmail ?>" aria-describedby="inputGroupPrepend" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom04" class="corTitulo">CPF</label>
+        <input type="text" class="form-control" id="validationCustom04" name="pessoaCpf" value="<?php echo $pessoaCPF ?>" required>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom05" class="corTitulo">Data de Nascimento</label>
+      <input type="text" class="form-control" id="validationCustom05" name="pessoaNasc" value="<?php echo inverteData($pessoaNasc) ?>" aria-describedby="inputGroupPrepend" required>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="exampleFormControlSelect2"  class="corTitulo">Profissão</label>
+      <select class="form-control" id="SelectSegmento"  name="pessoaProfissao">
+        <option selected value="<?php echo $pessoaProfissao ?>"><?php echo $categoriaNome_categoria ?></option>
+        <?php
+
+          // Consulta empresas
+          $sql_select = "SELECT * FROM categoria ORDER BY categoriaNome ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $categoriaId          = $res['id'];
+              $categoriaNome        = $res['categoriaNome'];
+
+              echo "<option value='$categoriaId'>$categoriaNome</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="exampleFormControlSelect1"  class="corTitulo">Empresa</label>
+      <select class="form-control" id="SelectEstado"  name="pessoaEmpresa">
+        <option selected value="<?php echo $pessoaEmpresa ?>"><?php echo $empresaNome_empresa ?></option>
+        <?php
+
+          // Consulta empresas
+          $sql_select = "SELECT * FROM empresas ORDER BY empresaNome ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $empresaId          = $res['id'];
+              $empresaNome        = $res['empresaNome'];
+
+              echo "<option value='$empresaId'>$empresaNome</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer07' name='pessoaId' value="<?php echo $pessoaId ?>" >
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='atualizar' >
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+
+</form>
+      

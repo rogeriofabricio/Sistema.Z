@@ -1,0 +1,134 @@
+92;100 ICLCR5 - Caixas Angulares;;Angular LCR;Focal;0
+93;100 ICW5 - Caixa Acústica In-Ceiling;;In-Ceiling;Focal;0
+94;100 ICW6 Branca - Caixa Acústica In-Ceiling;;In-Ceiling;Focal;0
+20;7Port;Extensor IR/RF;Extensor I/O;ControlArt;0
+48;AC-1 - Amplificador;Multiroom quando mais de um equipamento.0;Amplificador;AAT;0
+13;Amplificador XLS-2502;0;Amplificador;Crown;0
+64;Aqua AQ4 Branca - Caixa Outdoor;;All Weather;Absolute;0
+63;Aqua AQ4 Preta - Caixa Outdoor;;All Weather;Absolute;0
+11;Arena 100 - Subwoofer;- Alto-falante de 10” - Amplificação ClassD de 100 Watts RMS - Potência de pico de 200 Watts - Resposta de frequência: 41Hz – 150Hz - Controle de frequência de 50 – 150Hz (24dB/oitava) - Controle de fase, volume, crossover e sensor de auto powe;Subwoofers;JBL;0
+5;AVR 1510 S - Receiver;Receiver 5.1 - Suporte 3D e 4K - 4 Entradas HDMI - Spotify;Receiver;Harman Kardon;0
+6;AVR 1710 S - Receiver;Zona 2 (7.2) - 6 Entradas HDMI - 2 Saídas HDMI - Bluetooth - Spotify / AirPlay;Receiver;Harman Kardon;0
+122;B8 - Subwoofer;;Subwoofers;Revel;0
+19;Base + Bateria Recarregavel para SR260;0;Controle Remoto;Control4;0
+114;C263 - Caixa Acústica In-Ceiling;;In-Ceiling;Revel;0
+113;C263 WOG - Caixa Acústica In-Ceiling;;In-Ceiling;Revel;0
+116;C283 - Caixa Acústica In-Ceiling;;In-Ceiling;Revel;0
+115;C363 - Caixa Acústica In-Ceiling;;In-Ceiling;Revel;0
+118;C363XC - Caixa Outdoor;;All Weather;Revel;0
+117;C383 - Caixa Acústica In-Ceiling;;In-Ceiling;Revel;0
+119;C5400 - Caixa Acústica In-Ceiling;;In-Ceiling;Revel;0
+120;C783 - Caixa Acústica In-Ceiling;;In-Ceiling;Revel;0
+123;Cabo HDMI 0,9m - Instal Bay;;HDMI;Instal Bay;0
+101;Cabo HDMI 1,5m - Rosso;;HDMI;Rosso;0
+124;Cabo HDMI 1,8m - Instal Bay;;HDMI;Instal Bay;0
+105;Cabo HDMI 10m - AVIS;;HDMI;AVIS;0
+130;Cabo HDMI 10m - Metra;;HDMI;Metra;0
+106;Cabo HDMI 12m - AVIS;;HDMI;AVIS;0
+107;Cabo HDMI 15m - AVIS;;HDMI;AVIS;0
+127;Cabo HDMI 1m - Metra;;HDMI;Metra;0
+125;Cabo HDMI 2,7m - Instal Bay;;HDMI;Instal Bay;0
+108;Cabo HDMI 20m - AVIS;;HDMI;AVIS;0
+128;Cabo HDMI 2m - Metra;;HDMI;Metra;0
+129;Cabo HDMI 3m - Metra;;HDMI;Metra;0
+102;Cabo HDMI 3m - Rosso;;HDMI;Rosso;0
+126;Cabo HDMI 4,6m - Instal Bay;;HDMI;Instal Bay;0
+103;Cabo HDMI 5m - AVIS;;HDMI;AVIS;0
+104;Cabo HDMI 7m - AVIS;;HDMI;AVIS;0
+46;Caixa Acústica AM-1 - Branca;0;All Weather;B&W;0
+45;Caixa Acústica AM-1 - Preto;0;All Weather;B&W;0
+47;Caixa Pedra 5R82;0;All Weather;Russound;0
+7;CI6S - Caixa Acústica In-Ceiling;Potência: 60 watts RMS - Impedância: 8 Ohms - Resposta de Frequência: 40Hz - 20 Khz - Sensibilidade 89dB;In-Ceiling;JBL;0
+8;CI6SA - Caixa Acústica In-Ceiling;Angulada - Potência: 60 Watts RMS - Impedância: 8 Ohms - Resposta de Frequência: 40Hz - 20 Khz - Sensibilidade: 89 dB;Angular LCR;JBL;0
+9;Control X Branca - Caixa Outdoor;Potência recomendada para o amplificador: 20 a 100 Watts - Resposta de frequência (-3 dB): 90 Hz a 20 kHz (anecoico) - Sensibilidade: (2,83 V a 1 m) 87 dB - Impedância nominal: 8 Ohms;All Weather;JBL;0
+10;Control X Preta - Caixa Outdoor;Potência recomendada para o amplificador: 20 a 100 Watts - Resposta de frequência (-3 dB): 90 Hz a 20 kHz (anecoico) - Sensibilidade: (2,83 V a 1 m) 87 dB - Impedância nominal: 8 Ohms;All Weather;JBL;0
+95;Cub Evo - Subwoofer;;Subwoofers;Focal;0
+67;DIM-8 - Módulo Dimmer DINPLUG;;Módulo Dimmer;Absolute;0
+4;EA-01 - Controladora;Controladora de Automação;Smart Host;Control4;0
+110;Emissor IR Blaster Branco;;IR;Iluflex;0
+97;Extensor HDBaseT Lite;;Extensor;AVLife;0
+57;FPA-240 - Amplificador;2 X 120W @ 8 Ohms - 2 X 120W @ 4 Ohms - 1 X 240W @ 70V/100V  ;Amplificador;Absolute;0
+68;GreenPlug 24 Relay - All-in-One;;All-in-One;Absolute;0
+14;HKTS210 - Subwoofer;0;Subwoofers;Harman Kardon;0
+22;Home One - All-in-One 16 ch;16 Canais (12 canais relés +  4 canais dimmers) + 12 entradas + 2 entradas para sensores;All-in-One;Home Manager;990
+31;Homepad 4x2 - 1 Tecla - Branco;Padrão 4x2 - Conector Rj45;Keypad;Home Manager;0
+35;Homepad 4x2 - 1 Tecla - Preto;Padrão 4x2 - Conector Rj45;Keypad;Home Manager;0
+32;Homepad 4x2 - 2 Tecla - Branco;Padrão 4x2 - Conector Rj45;Keypad;Home Manager;0
+36;Homepad 4x2 - 2 Tecla - Preto;Padrão 4x2 - Conector Rj45;Keypad;Home Manager;0
+33;Homepad 4x2 - 4 Tecla - Branco;Padrão 4x2 - Conector Rj45;Keypad;Home Manager;0
+37;Homepad 4x2 - 4 Tecla - Preto;Padrão 4x2 - Conector Rj45;Keypad;Home Manager;0
+34;Homepad 4x2 - 6 Tecla - Branco;Padrão 4x2 - Conector Rj45;Keypad;Home Manager;0
+38;Homepad 4x2 - 6 Tecla - Preto;Padrão 4x2 - Conector Rj45;Keypad;Home Manager;0
+39;Homepad 4x4 - 2 Tecla - Branco;Padrão 4x4 - Conector Rj45;Keypad;Home Manager;0
+42;Homepad 4x4 - 2 Tecla - Preto;Padrão 4x4 - Conector Rj45;Keypad;Home Manager;0
+40;Homepad 4x4 - 4 Tecla - Branco;Padrão 4x4 - Conector Rj45;Keypad;Home Manager;0
+43;Homepad 4x4 - 4 Tecla - Preto;Padrão 4x4 - Conector Rj45;Keypad;Home Manager;0
+41;Homepad 4x4 - 6 Tecla - Branco;Padrão 4x4 - Conector Rj45;Keypad;Home Manager;0
+44;Homepad 4x4 - 6 Tecla - Preto;Padrão 4x4 - Conector Rj45;Keypad;Home Manager;0
+96;IP20 - Relé de Impulso;;Acessório;Finder;0
+109;IWA-250 - Monitor Audio;;Amplificador;Monitor Audio;0
+59;LCR4i - Caixa In-Ceiling;Angulada;Angular LCR;Absolute;0
+58;LCR8i - Caixa In-Ceiling;Angulada;Angular LCR;Absolute;0
+65;M16 Controller - DINPLUG;;Gateway;Absolute;0
+112;M80XC - Caixa Outdoor;;All Weather;Revel;0
+99;Matrix 4x2 HDMI;;Matrix;AVLife;0
+98;Matrix HDMI 4x4;;Matrix;AVLife;0
+56;MDS-450 - Amplificador;4 X 50W @ 8 Ohms  - 4 X 70W @ 4 Ohms - 2 X 120W @ 8 Ohms (Bridge);Amplificador;Absolute;0
+80;Metropolitan Dimmer;;Keypad;Savant;0
+81;Metropolitan Switch;;Keypad;Savant;0
+29;Módulo Driver LED RGB;Mudança de cores e dimerização de fitas LED RGB 12V;Mista (On-OFF - Dimmer);Home Manager;0
+23;Módulo Entradas;4 Entradas - Instalação em caixa 4x2;Acessório;Home Manager;0
+72;Módulo Guava Dimmer - AQL-GV-PWM3;Para dimerização de um circuito LED RGB (3 cores) ou até três circuitos LED monocromáticos.;Módulo Dimmer;Absolute;0
+71;Módulo Guava Relay - AQL-GV-RL4;Quatro relés para controle de até quatro zonas de iluminação on/off.;Modulo Relé;Absolute;0
+30;Módulo IR;Controla até 6 equipamentos IR - Fonte 5 VDC;Extensor I/O;Home Manager;0
+24;Módulo X1;1 Circuito - Saídas Mista (On-Off ou Dimmer) - Instalação em caixa 4x2;Modulo Relé;Home Manager;0
+25;Módulo X2;2 circuitos de iluminação ou 1 de cortina - Instalação em caixas 4×2 - Saídas Mistas (On-OFF ou Dimmer);Mista (On-OFF - Dimmer);Home Manager;0
+26;Módulo X2 + Entradas;4 Entradas - 2 circuitos de iluminação ou 1 de cortina - Instalação em caixas 4×2 - Saídas Mistas (ON-OFF ou Dimmer);Mista (On-OFF - Dimmer);Home Manager;0
+27;Módulo X4;4 circuitos de iluminação ou 2 de cortina - Saídas Mistas (ON-OFF ou Dimmer);Mista (On-OFF - Dimmer);Home Manager;0
+28;Módulo X4 + Entradas;4 Entradas - 4 circuitos de iluminação ou 2 de cortina - Saídas Mistas (ON-OFF ou Dimmer);Mista (On-OFF - Dimmer);Home Manager;0
+111;MX55XC - Caixa Outdoor;;All Weather;Revel;0
+82;NDS-2241 - Switcher HDMI;;Splitters / Scalers;Absolute;0
+87;NDS-371 Extensor HDBaseT TX;;Extensor;Absolute;0
+88;NDS-372 Extensor HDBaseT TX;;Extensor;Absolute;0
+90;NDS-AB33Kit - Extrator de Áudio;;Audio Tools;Absolute;0
+89;NDS-AE300 - Extrator de Áudio;;Audio Tools;Absolute;0
+91;NDS-DA21 - DAC;;Audio Tools;Absolute;0
+83;NDS-s12 Splitter HDMI;;Splitters / Scalers;Absolute;0
+84;NDS-S14 - Splitter HDMI;;Splitters / Scalers;Absolute;0
+86;NDS-T14 - Splitter HDMI;;Splitters / Scalers;Absolute;0
+85;NDST12 - Splitter HDMI;;Splitters / Scalers;Absolute;0
+51;NX1 - Amplificador;2 Inputs / 1 Output;Amplificador;Absolute;0
+55;NX12 - Multiroom;10 Inputs / 12 Outputs;Multiroom;Absolute;0
+52;NX3 - Multiroom;4 Inputs / 4 Outputs;Multiroom;Absolute;0
+53;NX4 - Multiroom;6 Inputs / 4 Outputs;Multiroom;Absolute;0
+54;NX6 - Multiroom;6 Inputs / 6 Outputs;Multiroom;Absolute;0
+49;PWC-1 - Condicionador;0;Condicionador de Energia;AAT;0
+50;PWC-2 - Condicionador;0;Condicionador de Energia;AAT;0
+69;Quicklight Branco - 4 Dim + 2 Rel;4 Dimmers + 2 Relés;All-in-One;Absolute;0
+70;Quicklight Preto - 4 Dim + 2 Rel;4 Dimmers + 2 Relés;All-in-One;Absolute;0
+136;Rack 16U;;Rack;Genérico;0
+137;Rack 20U;;Rack;Genérico;0
+138;Rack 24U;;Rack;Genérico;0
+60;RDI4i - Caixa In-Ceiling;0;In-Ceiling;Absolute;0
+76;REM-100 - Controle Remoto;Controle Remoto 1 Zona.;Controle Remoto;Savant;0
+66;RL-12 - Módulo Relay DINPLUG;;Modulo Relé;Absolute;0
+62;RPRO6T - Caixa In-Ceiling;0;In-Ceiling;Absolute;0
+61;RX4T - Caixa In-Ceiling;0;In-Ceiling;Absolute;0
+21;Smart Center - Controladora;Blaster IR + 3 saídas para emissores IR;Smart Host;Home Manager;1990
+73;Smart Host S2 - 00 - Controladora;;Smart Host;Savant;0
+74;Smart Host SHC-12 - Controladora;;Smart Host;Savant;0
+100;Splitter HDMI 1:2;;Splitters / Scalers;AVLife;0
+18;SR-260 - Controle Remoto C4;0;Controle Remoto;Control4;0
+75;SSC-0012 - Extensor;;Extensor I/O;Savant;0
+12;Sub 260 - Subwoofer;Potência De Pico 600 Watts - Frequências De Crossover 50 Hz 150 Hz - Resposta de frequência 29Hz - 150Hz - Especificações de Sistema - Potência Do Amplificador (Rms) 300 W;Subwoofers;JBL;0
+134;TL-SG1016D - Switch 16 Portas;;Switch;TP-Link;0
+135;TL-SG1024D - Switch 24 Portas;;Switch;TP-Link;0
+77;Touch 5.5" Preto;;Touch;Savant;0
+78;Touch 8" Branco;;Touch;Savant;0
+79;Touch 8" Preto;;Touch;Savant;0
+15;TX-NR575 - Receiver;0;Receiver;Onkyo;0
+16;TX-NR585 - Receiver;0;Receiver;Onkyo;0
+17;TX-NR777 - Receiver;0;Receiver;Onkyo;0
+131;Unifi AC Lite;;Access Point;Ubiquiti;0
+133;Unifi EdgeX;;Routeador;Ubiquiti;0
+132;Unifi Security Gateway - USG;;Routeador;Ubiquiti;0

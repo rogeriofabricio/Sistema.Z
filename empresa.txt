@@ -1,0 +1,4 @@
+1;Arquitetos & Cia;7512345678;cia@arquitetos.com;Feira de Santana;BA;44000000;Arquitetura
+2;Zafiro;7533337070;zafiro@zafiro.com.br;Salvador;BA;40000000;Automação
+3;Empresa;0000000000;sem@semempresa.com;Sem;BA;40000000;Arquitetura
+12;Teste Empresa;7599998888;teste@teste.com.br;Salvador;BA;40000000;Automação

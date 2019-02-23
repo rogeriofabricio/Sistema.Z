@@ -1,0 +1,200 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+.colorOpt{
+  color: #333;
+}
+.bkg-color{
+  background-color: #333;
+}
+optgroup[label]{
+  color: #333;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Novo Produto</h1>
+
+<form form name='produto' action='estoque.php' method='GET' id="needs-validation" novalidate>
+  <div class="col-md-12 mb-3 padding">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Código do Produto</label>
+      <input type="text" class="form-control" id="validationCustom01" name="prodCodigo" placeholder="Digite o código" required>
+    </div>
+  </div>
+  <div class="col-md-12 mb-3 padding">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Modelo</label>
+      <input type="text" class="form-control" id="validationCustom02" name="prodModelo" placeholder="Digite o modelo" required>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02" class="corTitulo">Descrição</label>
+      <input type="text" class="form-control" id="validationCustom03" name="prodDescricao" placeholder="Digite uma descrição" required>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label for="exampleFormControlSelect2"  class="corTitulo">Sub-Categoria</label>
+      <select class="form-control" id="idSubcategoria"  name="idSubcategoria">
+        <?php
+
+          // Consulta catregorias
+          $sql_select = "SELECT * FROM prod_categoria ORDER BY categoria_nome";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $categoriaId   = $res['id'];
+              $categoriaNome = $res['categoria_nome'];
+
+              echo "<optgroup label='$categoriaNome'></optgroup>";
+
+
+              // Consulta subcatregorias
+              $sql_select_sub = "SELECT * FROM prod_sub_categoria WHERE id_categoria = $categoriaId ORDER BY sub_categoria_nome ASC";
+
+              try{
+
+                $query_select_sub = $conecta->prepare($sql_select_sub);
+                $query_select_sub->execute();
+
+                $resultado_query_sub = $query_select_sub->fetchAll(PDO::FETCH_ASSOC);
+                $count_sub = $query_select_sub->rowCount(PDO::FETCH_ASSOC);
+
+              } catch(PDOexception $error_select_sub) {
+                echo 'Erro ao selecionar'.$error_insert->getMessage();
+              }
+
+              if($count == '0'){
+
+                echo 'Nada encontrado.';
+
+              }else{
+
+                foreach($resultado_query_sub as $res_sub){
+
+                  $subcategoriaId   = $res_sub['id'];
+                  $subcategoriaNome = $res_sub['sub_categoria_nome'];
+
+                  echo "<option value='$subcategoriaId'>$subcategoriaNome</option>";
+
+                } 
+              }
+
+            } 
+          }
+       ?>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-12 mb-3 padding">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom04" class="corTitulo">Custo</label>
+      <input type="text" class="form-control" id="validationCustom04" name="prodCusto" placeholder="Digite o custo" required>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label for="exampleFormControlSelect3"  class="corTitulo">Fabricante</label>
+      <select class="form-control" id="idFabricante"  name="idFabricante">
+        <?php
+
+          // Consulta fabricante
+          $sql_select = "SELECT * FROM prod_fabricante ORDER BY fabricante_nome ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $fabricanteId   = $res['id'];
+              $fabricanteNome = $res['fabricante_nome'];
+
+              echo "<option value='$fabricanteId'>$fabricanteNome</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label for="exampleFormControlSelect4"  class="corTitulo">Fornecedor</label>
+      <select class="form-control" id="idFornecedor"  name="idFornecedor">
+        <?php
+
+          // Consulta fabricante
+          $sql_select = "SELECT * FROM prod_fornecedor ORDER BY fornecedor_nome ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $fornecedorId   = $res['id'];
+              $fornecedorNome = $res['fornecedor_nome'];
+
+              echo "<option value='$fornecedorId'>$fornecedorNome</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='salvarProduto' >
+    <button class="btn btn-primary" type="submit" value="salvar">Salvar</button>
+  </div>
+
+</form>

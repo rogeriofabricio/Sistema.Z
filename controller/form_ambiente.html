@@ -1,0 +1,105 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Incluir Ambiente</h1>
+
+  <form form name='ambiente' action='projeto.php' method='GET' id="needs-validation" novalidate>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom01" class="corTitulo">Ambiente</label>
+        <input type="text" class="form-control" id="validationCustom01" name="ambienteNome" placeholder="Digite o nome do ambiente" required>
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label for="exampleFormControlSelect1"  class="corTitulo">Som</label>
+        <select class="form-control" id="Som"  name="ambienteSom">
+          <option value="Sim">Sim</option>
+          <option value="Não">Não</option>
+          <option value="Preparação">Preparação</option>
+        </select>
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label for="exampleFormControlSelect2"  class="corTitulo">Sistema</label>
+        <select class="form-control" id="AmbienteSistema"  name="ambienteSistema">
+          <option selected value="Mono">Mono</option>
+          <option value="2.0">2.0</option>
+          <option value="2.1">2.1</option>
+          <option value="5.1">5.1</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02" class="corTitulo">Amplificação</label>
+        <input type="text" class="form-control" id="validationCustom02" name="ambienteAmplificacao" placeholder="" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom03" class="corTitulo">Subwoofer</label>
+        <input type="text" class="form-control" id="validationCustom03" name="ambienteSubwoofer" placeholder="" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom04" class="corTitulo">Caixa Frontal</label>
+        <input type="text" class="form-control" id="validationCustom04" name="ambienteCaixaFrontal" placeholder="" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom05" class="corTitulo">Caixa Central</label>
+        <input type="text" class="form-control" id="validationCustom05" name="ambienteCaixaCentral" placeholder="" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom06" class="corTitulo">Caixa Surround</label>
+        <input type="text" class="form-control" id="validationCustom06" name="ambienteSurround" placeholder="" required>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom07" class="corTitulo">Fonte(s) de Sinal</label>
+        <input type="text" class="form-control" id="validationCustom07" name="ambienteFonteSinal" placeholder="" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <div class="col-md-3 mb-3">
+          <label for="exampleFormControlSelect2"  class="corTitulo">Automação da TV</label>
+          <select class="form-control" id="AmbienteAutomacao"  name="ambienteAutomacao">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Preparação">Preparação</option>
+          </select>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="exampleFormControlSelect2"  class="corTitulo">Automação da Ar-Condicionado</label>
+          <select class="form-control" id="AmbienteAr"  name="ambienteAr">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Preparação">Preparação</option>
+          </select>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="exampleFormControlSelect2"  class="corTitulo">Automação da Cortinas</label>
+          <select class="form-control" id="AmbienteCortinas"  name="ambienteCortinas">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Preparação">Preparação</option>
+          </select>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="exampleFormControlSelect2"  class="corTitulo">Automação da Iluminação</label>
+          <select class="form-control" id="AmbienteIluminacao"  name="ambienteIluminacao">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Preparação">Preparação</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mb-3 padding">
+      <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='salvar' >
+      <button class="btn btn-primary" type="submit">Incluir</button>
+    </div>
+
+  </form>
+      

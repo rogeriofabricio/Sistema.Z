@@ -1,0 +1,121 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Parceiro - Empresa</h1>
+
+<form form name='empresa' action='registro.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Empresa</label>
+      <input type="text" class="form-control" id="validationCustom01" name="empresaNome" placeholder="Digite o nome da empresa" required>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom02" class="corTitulo">CNPJ</label>
+      <input type="text" class="form-control" id="validationCustom02" name="empresaCnpj" placeholder="Apenas números" required>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom03" class="corTitulo">Telefone</label>
+      <input type="text" class="form-control" id="validationCustom03" name="empresaTel" placeholder="Apenas números" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom04" class="corTitulo">Contato</label>
+      <input type="text" class="form-control" id="validationCustom04" name="empresaContato" placeholder="Nome de pessoa para contato" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom05" class="corTitulo">E-mail</label>
+      <input type="text" class="form-control" id="validationCustom05" name="empresaEmail" placeholder="exemplo@exemplo.com.br" aria-describedby="inputGroupPrepend" required>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom06" class="corTitulo">Cidade</label>
+        <input type="text" class="form-control" id="validationCustom06" name="empresaCidade" placeholder="Cidade da sede da empresa" required>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="exampleFormControlSelect1"  class="corTitulo">Estado</label>
+      <select class="form-control" id="SelectEstado"  name="empresaEstado">
+        <option value="AC">Acre</option> 
+        <option value="AL">Alagoas</option> 
+        <option value="AM">Amazonas</option> 
+        <option value="AP">Amapá</option> 
+        <option selected value="BA">Bahia</option> 
+        <option value="CE">Ceará</option> 
+        <option value="DF">Distrito Federal</option> 
+        <option value="ES">Espírito Santo</option> 
+        <option value="GO">Goiás</option>
+        <option value="MA">Maranhão</option> 
+        <option value="MT">Mato Grosso</option> 
+        <option value="MS">Mato Grosso do Sul</option> 
+        <option value="MG">Minas Gerais</option> 
+        <option value="PA">Pará</option> 
+        <option value="PB">Paraíba</option> 
+        <option value="PR">Paraná</option> 
+        <option value="PE">Pernambuco</option> 
+        <option value="PI">Piauí</option> 
+        <option value="RJ">Rio de Janeiro</option> 
+        <option value="RN">Rio Grande do Norte</option> 
+        <option value="RO">Rondônia</option> 
+        <option value="RS">Rio Grande do Sul</option> 
+        <option value="RR">Roraima</option> 
+        <option value="SC">Santa Catarina</option> 
+        <option value="SE">Sergipe</option> 
+        <option value="SP">São Paulo</option> 
+        <option value="TO">Tocantins</option>
+      </select>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom07" class="corTitulo">CEP</label>
+      <input type="text" class="form-control" id="validationCustom07" name="empresaCep" placeholder="44000000" aria-describedby="inputGroupPrepend" required>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="exampleFormControlSelect2"  class="corTitulo">Segmento</label>
+      <select class="form-control" id="SelectSegmento"  name="empresaSeg">
+        <?php
+
+          // Consulta segmentos
+          $sql_select = "SELECT * FROM segmento ORDER BY segmentoNome ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $segmentoId          = $res['id'];
+              $segmentoNome        = $res['segmentoNome'];
+
+              echo "<option value='$segmentoId'>$segmentoNome</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer07' name='link' value='salvarParceiroPJ' >
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+
+</form>
+      

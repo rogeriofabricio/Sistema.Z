@@ -1,0 +1,137 @@
+#form {
+	width: 100%;
+	background-color: rgba(0,0,0,0.4);
+	border-style: solid; 
+	border-color: #333; 
+	border-radius: 20px; 
+	border-width: 3px;
+	padding: 20px;
+	float: left;
+}
+
+.form_fixo {
+	width: 900px;
+	background-color: rgba(0,0,0,0.4);
+	border-style: solid; 
+	border-color: #333; 
+	border-radius: 20px; 
+	border-width: 3px;
+	padding: 20px;
+	float: left;
+}
+
+.form_coluna {
+	float: left;
+}
+
+.form_coluna_centro {
+	margin: 0 auto;
+}
+
+.form_financeiro {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.form_select {
+	width: 300px;
+	height: 40px;
+	margin: 10px;
+}
+
+.form_input {
+	width: 300px;
+	height: 40px;
+	margin: 10px;
+	padding-left: 10px;
+	border-radius: 6px;
+}
+
+.form_text_area {
+	width: 300px;
+	margin: 10px;
+	border-radius: 6px;
+}
+
+.form_botao {
+	width: 300px;
+	height: 40px;
+	margin: 10px;
+	border-radius: 6px;
+}
+
+label {
+	margin-top: 30px;
+	color: #FFF;
+}
+
+p {
+	width: 400px;
+	margin-top: 30px;
+	margin-left: 30px;
+	margin-right: 30px;
+	color: #FFF;
+
+}
+
+span {
+	color: #FFF;
+	font-weight: bold;
+}
+
+a {
+	font-weight: bold;
+}
+
+.tabela {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.coluna1 {
+	width: 100px;
+	float: left;
+	background-color: #FFF;
+	padding: 8px 0 8px 0;
+}
+
+.coluna2 {
+	width: 100px;
+	float: left;
+	background-color: #FFF;
+	padding: 8px 0 8px 0;
+}
+
+.coluna3 {
+	width: 100px;
+	float: left;
+	background-color: #FFF;
+	padding: 8px 0 8px 0;
+}
+
+.coluna4 {
+	width: 100px;
+	float: left;
+	background-color: #FFF;
+	padding: 8px 0 8px 0;
+}
+
+.coluna5 {
+	width: 100px;
+	float: left;
+	background-color: #FFF;
+	padding: 8px 0 8px 0;
+}
+
+.coluna6 {
+	width: 100px;
+	float: left;
+}
+
+.contador {
+	color: #333;
+	float: right;
+}
+
+
+

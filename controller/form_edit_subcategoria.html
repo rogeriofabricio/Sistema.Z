@@ -1,0 +1,65 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Editar Sub-Categoria</h1>
+
+<form form name='subcategoria' action='estoque.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Sub-Categoria</label>
+      <input type="text" class="form-control" id="validationCustom01" name="subcategoriaNome" value="<?php echo $subcategoriaNome ?>" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+        <label for="exampleFormControlSelect2"  class="corTitulo">Categoria</label>
+        <select class="form-control" id="idCategoria"  name="idCategoria">
+          <?php
+
+            // Consulta catregorias
+            $sql_select = "SELECT * FROM prod_categoria ORDER BY categoria_nome ASC";
+
+            try{
+
+              $query_select = $conecta->prepare($sql_select);
+              $query_select->execute();
+
+              $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+              $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+            } catch(PDOexception $error_select) {
+              echo 'Erro ao selecionar'.$error_insert->getMessage();
+            }
+
+            if($count == '0'){
+
+              echo 'Nada encontrado.';
+
+            }else{
+
+              foreach($resultado_query as $res){
+
+                $categoriaId          = $res['id'];
+                $categoriaNome        = $res['categoria_nome'];
+
+                echo "<option value='$categoriaId'>$categoriaNome</option>";
+
+            } 
+          }
+          ?>
+        </select>
+      </div>
+    </div>
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer07' name='subcategoriaId' value="<?php echo $subcategoriaId ?>" >
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='atualizarSubcategoria' >
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+
+</form>
+      

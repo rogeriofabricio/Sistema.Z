@@ -1,0 +1,25 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Editar Dados do Cliente</h1>
+
+<form form name='fornecedor' action='estoque.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Nome da Empresa</label>
+      <input type="text" class="form-control" id="validationCustom01" name="fornecedorNome" value="<?php echo $fornecedorNome ?>" required>
+    </div>
+  </div>
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer07' name='fornecedorId' value="<?php echo $fornecedorId ?>" >
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='atualizarFornecedor' >
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+
+</form>
+      

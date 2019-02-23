@@ -1,0 +1,23 @@
+27;Airon
+28;Assa Abloy
+13;Audiogene
+19;AV Group
+12;Chiave
+9;Disac
+15;Discabos
+22;Discom
+20;Dual Screen
+14;Finder
+30;Gaia
+24;H2i
+8;Harman Kardon
+10;Home Manager
+18;Iluflex
+23;LGE
+16;Loud
+17;Mediagear
+29;Projetelas
+11;Som Maior
+26;Stanza Tech
+25;Torre Telecom
+21;WDC

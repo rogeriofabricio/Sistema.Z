@@ -1,0 +1,99 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+.fontSize{
+  font-size: 11px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Propescção</h1>
+
+<form form name='indicacao' action='prospeccao.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Id</label>
+      <input type="text" class="form-control" id="validationCustom01" name="indicacaoNome"  value="<?php echo $indicacaoId ?>" disabled>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02" class="corTitulo">Criado Em</label>
+      <input type="text" class="form-control" id="validationCustom02" name="indicacaoTel" value="<?php echo $criadoEm ?>" disabled>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom03" class="corTitulo">Atualizado Em</label>
+      <input type="text" class="form-control" id="validationCustom03" name="indicacaoEmail"  value="<?php echo $atualizadoEm ?>" aria-describedby="inputGroupPrepend" disabled>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Nome</label>
+      <input type="text" class="form-control" id="validationCustom01" name="indicacaoNome"  value="<?php echo $indicacaoNome ?>" disabled>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02" class="corTitulo">Telefone</label>
+      <input type="text" class="form-control" id="validationCustom02" name="indicacaoTel" value="<?php echo $indicacaoTel ?>" disabled>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom03" class="corTitulo">E-mail</label>
+      <input type="text" class="form-control" id="validationCustom03" name="indicacaoEmail"  value="<?php echo $indicacaoEmail ?>" aria-describedby="inputGroupPrepend" disabled>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom04" class="corTitulo">Local do Empreendimento</label>
+        <input type="text" class="form-control" id="validationCustom04" name="indicacaoLocal"  value="<?php echo $indicacaoLocal ?>" disabled>
+    </div>
+    <div class="col-md-8 mb-3">
+      <label for="validationCustom05" class="corTitulo">Perfil</label>
+      <input type="text" class="form-control" id="validationCustom05" name="indicacaoPerfil"  value="<?php echo $indicacaoPerfil ?>" disabled>
+      <!--textarea class="form-control is-valid" id="exampleFormControlTextarea1" name="indicacaoPerfil" rows="5" placeholder="<?php echo $indicacaoPerfil ?>" value="<?php echo $indicacaoPerfil ?>"></textarea-->
+    </div>
+    <!--div class="col-md-8 mb-3">
+      <div class="form-group form-group-inline">
+        <label for="validationCustom07" class="corTitulo">Faixa Orçamentária (Média da intensão de investimento)</label>
+        <fieldset id="indicacaoOrcamento">
+          <div class="col-md-2 mb-3 form-check form-check-inline">
+            <input class="form-check-input" name="indicacaoOrcamento" type="checkbox" id="inlineCheckbox2" value="R$40K">
+            <label class="form-check-label corTitulo" for="inlineCheckbox2">R$40K</label>
+          </div>
+          <div class="col-md-2 mb-3 form-check form-check-inline">
+            <input class="form-check-input" name="indicacaoOrcamento" type="checkbox" id="inlineCheckbox3" value="R$60K">
+            <label class="form-check-label corTitulo" for="inlineCheckbox3">R$60K</label>
+          </div>
+          <div class="col-md-2 mb-3 form-check form-check-inline">
+            <input class="form-check-input" name="indicacaoOrcamento" type="checkbox" id="inlineCheckbox3" value="R$80K">
+            <label class="form-check-label corTitulo" for="inlineCheckbox3">R$80K</label>
+          </div>
+          <div class="col-md-2 mb-3 form-check form-check-inline">
+            <input class="form-check-input" name="indicacaoOrcamento" type="checkbox" id="inlineCheckbox3" value="R$100K">
+            <label class="form-check-label corTitulo" for="inlineCheckbox3">R$100K</label>
+          </div>
+          <div class="col-md-2 mb-3 form-check form-check-inline">
+            <input class="form-check-input" name="indicacaoOrcamento" type="checkbox" id="inlineCheckbox3" value="+R$100K">
+            <label class="form-check-label corTitulo" for="inlineCheckbox3">+ R$100K</label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div-->
+
+  <!--div class="form-row">
+    <div class="col-md-8 mb-3">
+      <label for="validationCustom05" class="corTitulo">Perfil</label>
+      <input type="text" class="form-control" id="validationCustom05" name="indicacaoPerfil"  value="<?php echo $indicacaoPerfil ?>">
+      <textarea class="form-control is-valid" id="exampleFormControlTextarea1" name="indicacaoPerfil" rows="5" placeholder="<?php echo $indicacaoPerfil ?>" value="<?php echo $indicacaoPerfil ?>"></textarea>
+    </div>
+  </div-->
+
+  <div class="col-md-12 mb-3 padding">
+    <input type="hidden" class="form-control" id="validationCustom07" name="indicacaoId"  value="<?php echo $indicacaoId ?>">
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='resultado' >
+    <button class="btn btn-primary" type="submit">Voltar</button>
+  </div>
+
+</form>
+      

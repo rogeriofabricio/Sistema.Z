@@ -1,0 +1,62 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Nova Empresa</h1>
+
+<form form name='empresa' action='empresas.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Empresa</label>
+      <input type="text" class="form-control" id="validationCustom01" name="empresaNome" value="<?php echo $empresaNome ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02" class="corTitulo">Telefone</label>
+      <input type="text" class="form-control" id="validationCustom02" name="empresaTel" value="<?php echo $empresaTel ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom03" class="corTitulo">E-mail</label>
+      <input type="text" class="form-control" id="validationCustom03" name="empresaEmail" value="<?php echo $empresaEmail ?>" aria-describedby="inputGroupPrepend" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom04" class="corTitulo">Cidade</label>
+        <input type="text" class="form-control" id="validationCustom04" name="empresaCidade" value="<?php echo $empresaCidade ?>" required>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="exampleFormControlSelect1"  class="corTitulo">Estado</label>
+      <select class="form-control" id="SelectEstado"  name="empresaEstado">
+        <option selected value="<?php echo $empresaEstado ?>"><?php echo $empresaEstado?></option>
+        <option value="AC">Acre</option>
+        <option value="AL">Alagoas</option>
+        <option value="AM">Amazonas</option>
+        <option value="AP">Amapá</option>
+      </select>
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom05" class="corTitulo">CEP</label>
+      <input type="text" class="form-control" id="validationCustom05" name="empresaCep" value="<?php echo $empresaCep ?>" aria-describedby="inputGroupPrepend" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="exampleFormControlSelect2"  class="corTitulo">Segmento</label>
+      <select class="form-control" id="SelectSegmento"  name="empresaSeg">
+        <option selected value="<?php echo $empresaSeg ?>"><?php echo $segmentoNome_segmento ?></option>
+        <option value="Engenharia">Engenharia</option>
+        <option value="Decoração">Decoração</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer07' name='empresaId' value="<?php echo $empresaId ?>" >
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='atualizar' >
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+
+</form>
+      

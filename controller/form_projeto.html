@@ -1,0 +1,172 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Incluir Projeto</h1>
+
+  <form form name='projeto' action='projeto.php' method='GET' id="needs-validation" novalidate>
+
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <div class="col-md-2 mb-3">
+          <label for="exampleFormControlSelect2"  class="corTitulo">Cliente</label>
+          <select class="form-control" id="SelectPessoa"  name="cliente">
+            <option selected value="-1">Cliente</option>
+            <?php
+
+              // Consulta pessoas
+              $sql_select = "SELECT * FROM pessoas WHERE pessoaTipo = 'cliente' ORDER BY pessoaNome ASC";
+
+              try{
+
+                $query_select = $conecta->prepare($sql_select);
+                $query_select->execute();
+
+                $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+                $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+              } catch(PDOexception $error_select) {
+                echo 'Erro ao selecionar'.$error_insert->getMessage();
+              }
+
+              if($count == '0'){
+
+                echo 'Nada encontrado.';
+
+              }else{
+
+                foreach($resultado_query as $res){
+
+                  $clienteId          = $res['id'];
+                  $clienteNome        = $res['pessoaNome'];
+
+                  echo "<option value='$clienteId'>$clienteNome</option>";
+
+              } 
+            }
+            ?>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationCustom01" class="corTitulo">Imóvel</label>
+        <input type="text" class="form-control" id="validationCustom01" name="projetoEmpreendimento" placeholder="" required>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="exampleFormControlSelect2"  class="corTitulo">Parceiro</label>
+          <select class="form-control" id="SelectParceiro"  name="parceiro">
+            <option selected value="-1">Parceiro</option>
+            <?php
+
+              // Consulta pessoas
+              $sql_select_parceiro = "SELECT * FROM pessoas WHERE pessoaTipo = 'parceiro' ORDER BY pessoaNome ASC";
+
+              try{
+
+                $query_select_parceiro = $conecta->prepare($sql_select_parceiro);
+                $query_select_parceiro->execute();
+
+                $resultado_query_parceiro = $query_select_parceiro->fetchAll(PDO::FETCH_ASSOC);
+                $count_parceiro = $query_select_parceiro->rowCount(PDO::FETCH_ASSOC);
+
+              } catch(PDOexception $error_select_parceiro) {
+                echo 'Erro ao selecionar'.$error_select_parceiro->getMessage();
+              }
+
+              if($count == '0'){
+
+                echo 'Nada encontrado.';
+
+              }else{
+
+                foreach($resultado_query_parceiro as $res_parceiro){
+
+                  $parceiroId          = $res_parceiro['id'];
+                  $parceiroNome        = $res_parceiro['pessoaNome'];
+
+                  echo "<option value='$parceiroId'>$parceiroNome</option>";
+
+              } 
+            }
+            ?>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <div class="col-md-3 mb-3">
+          <label for="exampleFormControlSelect1"  class="corTitulo">Automação</label>
+          <select class="form-control" id="automacao"  name="projetoAutomacao">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Preparação">Preparação</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom03" class="corTitulo">Marca</label>
+          <input type="text" class="form-control" id="validationCustom03" name="projetoAutomacaoMarca" placeholder="" required>
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <div class="col-md-3 mb-3">
+          <label for="exampleFormControlSelect1"  class="corTitulo">Centralização</label>
+          <select class="form-control" id="centralizacao"  name="projetoCentralizacao">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Preparação">Preparação</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom04" class="corTitulo">Local</label>
+          <input type="text" class="form-control" id="validationCustom04" name="projetoCentralizacaoLocal" placeholder="" required>
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <div class="col-md-3 mb-3">
+          <label for="exampleFormControlSelect1"  class="corTitulo">Projeção</label>
+          <select class="form-control" id="projecao"  name="projetoProjecao">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+            <option value="Preparação">Preparação</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom05" class="corTitulo">Local</label>
+          <input type="text" class="form-control" id="validationCustom05" name="projetoProjecaoLocal" placeholder="" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom05" class="corTitulo">Tela</label>
+          <input type="text" class="form-control" id="validationCustom05" name="projetoProjecaoTela" placeholder="" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom05" class="corTitulo">Projetor</label>
+          <input type="text" class="form-control" id="validationCustom05" name="projetoProjecaoProjetor" placeholder="" required>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <div class="col-md-12 mb-3 padding">
+      <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='salvar' >
+      <button class="btn btn-primary" type="submit">Salvar</button>
+    </div>
+
+  </form>
+      

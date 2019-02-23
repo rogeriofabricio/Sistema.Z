@@ -1,0 +1,72 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+.fontSize{
+  font-size: 10px;
+}
+</STYlE>
+<h1 style="margin-top: -60px; margin-bottom: 20px;">Cadastrar Senha</h1>
+  
+<div class="col-12 col-md-12">
+<?php 
+
+  if (isset ($_GET['pessoaNome'])) {
+    $usuario = $pessoaNome;
+    $userEmail = $pessoaEmail;
+  } else if (isset ($_GET['empresaNome'])) {
+    $usuario = $empresaNome;
+    $userEmail = $empresaEmail;
+  } else {
+    echo "Nenhuma das opções.";
+  }
+
+  $usuario = str_replace(' ','',$usuario);
+  $usuario = str_replace('ç','c', $usuario);
+  $usuario = str_replace(array('é','ê'),'e', $usuario);
+  $usuario = str_replace(array('â','á','ã'),'a', $usuario);
+  $usuario = str_replace(array('ô','ó','õ'),'o', $usuario);
+  $usuario = str_replace('í','i', $usuario);
+?>
+<form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>">
+  <div class="form-row"  style="width: 300px;">
+    <div class="col-md-12 mb-3">
+      <label for="validationCustom03" class="corTitulo">Senha</label>
+      <input type="password" name="password"  id="password" class="form-control" required>
+    </div>
+    <div class="col-md-12 mb-3">
+      <label for="validationCustom04" class="corTitulo">Confirmar a Senha</label>
+        <input type="password" name="confirmpwd" id="confirmpwd" class="form-control" required>
+    </div>
+  </div>
+  <?php
+    if (!empty($error_msg)) {
+      echo $error_msg;
+    }
+  ?>
+  <ul class="list-unstyled">
+    <li class="fontSize">*As senhas devem ter pelo menos 6 caracteres; </li>
+    <li class="fontSize">*Devem conter pelo menos uma letra maiúscula (A..Z); </li>
+    <li class="fontSize">*Pelo menos uma letra minúscula ( a..z); </li>
+    <li class="fontSize">*Pelo menos um número (0..9); </li>
+    <li class="fontSize">*Senha e confirmação devem ser idênticas. </li>
+  </ul>
+  
+  <div class="col-md-12 mb-3 padding">
+    <button class="btn btn-primary" type="button" value="Register" 
+                   onclick="return regformhash(this.form,
+                                   this.form.username,
+                                   this.form.email,
+                                   this.form.password,
+                                   this.form.confirmpwd);">Salvar</button>
+    <input type="hidden" class="form-control" name='username' id='username' value="<?php echo $usuario; ?>" required>
+    <input type="hidden" class="form-control" name="email" id="email" value="<?php echo $userEmail; ?>" required>
+  </div>
+
+</form>
+<p>Voltar para tela de <a href="index.php">login</a>.</p>
+</div>
+  

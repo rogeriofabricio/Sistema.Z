@@ -1,0 +1,119 @@
+
+
+      <div class="col-md-12 mb-3" style="margin-top: 30px;">
+
+      <?php
+
+        // Consulta produto
+        $sql_select = "SELECT * FROM orc_cesta WHERE orc_controle = $controle";
+
+        try{
+
+          $query_select = $conecta->prepare($sql_select);
+          $query_select->execute();
+
+          $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+          $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+        } catch(PDOexception $error_select) {
+          echo 'Erro ao selecionar'.$error_insert->getMessage();
+        }
+
+        if($count == '0'){
+
+          echo '<br /><br />Nada encontrado.';
+
+        } else {
+      ?>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" style='text-align: center;'>Quant.</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Sub-Categoria</th>
+                <th scope="col">Fabricante</th>
+              </tr>
+            </thead>
+      <?php
+
+          foreach($resultado_query as $res){
+
+            $orcCestaId   = $res['id'];
+            $orcControle  = $res['orc_controle'];
+            $idProduto    = $res['id_produto'];
+            $orcQuant     = $res['orc_quant'];
+
+
+            //Inicio da seleção da produto
+            $sql_select_prod = "SELECT * FROM produtos WHERE id = $idProduto";
+
+            try{
+
+              $query_select_prod = $conecta->prepare($sql_select_prod);
+              $query_select_prod->execute();
+
+              $resultado_query_prod = $query_select_prod->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch(PDOexception $error_select_prod) {
+              echo 'Erro ao selecionar'.$error_insert_prod->getMessage();
+            }
+
+            foreach($resultado_query_prod as $res_prod){
+
+              $produtoId            = $res_prod['id'];
+              $produtoModelo        = $res_prod['prod_modelo'];
+              $produtoDescricao     = $res_prod['prod_descricao'];
+              $produtoSubCategoria  = $res_prod['id_subcategoria'];
+              $produtoFabricante    = $res_prod['id_fabricante'];
+
+              //Inicio da seleção da SubCategoria
+              $sql_select_subcat = "SELECT * FROM prod_sub_categoria WHERE id = $produtoSubCategoria";
+
+              try{
+
+                $query_select_subcat = $conecta->prepare($sql_select_subcat);
+                $query_select_subcat->execute();
+
+                $resultado_query_subcat = $query_select_subcat->fetchAll(PDO::FETCH_ASSOC);
+
+              } catch(PDOexception $error_select_subcat) {
+                echo 'Erro ao selecionar'.$error_insert_subcato->getMessage();
+              }
+
+              foreach($resultado_query_subcat as $res_subcat){
+
+                  $subcatNome = $res_subcat['sub_categoria_nome'];
+
+              }
+              //Fim seleção subCategoria
+
+
+              //Inicio da seleção da fabricante
+              $sql_select_fabr = "SELECT * FROM prod_fabricante WHERE id = $produtoFabricante";
+
+              try{
+
+                $query_select_fabr = $conecta->prepare($sql_select_fabr);
+                $query_select_fabr->execute();
+
+                $resultado_query_fabr = $query_select_fabr->fetchAll(PDO::FETCH_ASSOC);
+
+              } catch(PDOexception $error_select_fabr) {
+                echo 'Erro ao selecionar'.$error_insert_fabr->getMessage();
+              }
+
+              foreach($resultado_query_fabr as $res_fabr){
+
+                  $fabrNome   = $res_fabr['fabricante_nome'];
+
+              }
+              //Fim seleção fabricante
+
+            }
+            //Fim seleção produto
+
+            echo "<tbody> <tr> <td style='text-align: center;'>".$orcQuant."</td> <td>".$produtoModelo."</td> <td>".$produtoDescricao."</td> <td>".$subcatNome."</td> <td>".$fabrNome."</td> </tr>";
+            
+          }
+        }

@@ -1,0 +1,6 @@
+Fabricio;75992311548;fabricio@fabricio.com.br;Bangalay;Prospecto;Teste
+Paulo Ricardo;7189896767;paulo@paulo.com.br;Murano;Prospecto;Sem detalhes
+Renato;75992311548;fabricio@fabricio.com.br;Bangalay;Aguard. Visita ou Plantas;Teste
+Pedro Carneiro;7598987676;pedro@pedro.com.br;Bangalay;Aguard. Visita ou Plantas;Sem detalhes
+Fabricio Loiola;7598766789;fabricio@fabricio.com.br;Campanario;Desenvolvendo Proposta;Sem detalhes a acrescentar.
+Fabricio;75992311548;rogerio.fabricio@me.com;Bangalay;Em Negociação;Teste

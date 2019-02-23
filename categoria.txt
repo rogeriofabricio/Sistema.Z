@@ -1,0 +1,21 @@
+1;Agronomia, Pecuária e Pesca
+2;Arquitetura & Urbanismo
+3;Artes
+5;Contabilidade
+7;Direito
+8;Empresário
+9;Engenharia
+10;Gestão
+11;Marketing e Publicidade
+12;Medicina
+13;Odontologia
+14;Outros
+15;Psicologia
+16;Setor Financeiro
+17;Tecnologia
+18;Turismo
+19;Veterinária
+20;Vendas
+21;Design de Interiores & Decoração
+22;Imobiliário
+23;Projetista

@@ -1,0 +1,69 @@
+<STYLE>
+/** Zafiro Nav Celular **/
+.nav-preto-celular {
+	background-color: #000;
+	color: #FFF;
+}
+
+.nav-preto-celular li{
+	color: #FFF;
+}
+</STYLE>
+
+<nav class="navbar navbar-dropdown navbar-fixed-top nav-preto-celular">
+	<div class="container">
+
+		<div class="mbr-table">
+			<div class="mbr-table-cell" style="height: 70px;">
+
+				<div class="navbar-brand">
+					<a href="http://localhost:8888/sistema/logged.php" class="navbar-logo"><img src="http://localhost:8888/sistema/assets/images/logo_zafiro.png" alt="Zafiro" style="height: 30px;"></a>
+					<a class="navbar-caption text-info" href="http://localhost:8888/sistema/logged.php">online</a>
+				</div>
+
+			</div>
+
+
+			<div class="mbr-table-cell nav-preto-celular" style="height: 70px;">
+
+				<button class="navbar-toggler pull-xs-right hidden-md-up nav-preto-celular" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+					<div class="hamburger-icon"></div>
+				</button>
+
+				<ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm nav-preto-celular" id="exCollapsingNavbar">
+					<!--li class="nav-item"><a class="dropdown-item nav-preto-celular" href="contas/contas_index.php?link=incluir">Categorias</a></li>
+					<li class="nav-item"><a class="dropdown-item nav-preto-celular" href="contas/contas_index.php?link=incluir">Empresas</a></li>
+					<li class="nav-item"><a class="dropdown-item nav-preto-celular" href="contas/contas_index.php?link=incluir">Etapas</a></li>
+					<li class="nav-item"><a class="dropdown-item nav-preto-celular" href="contas/contas_index.php?link=incluir">Pessoas</a></li>
+					<li class="nav-item"><a class="dropdown-item nav-preto-celular" href="contas/contas_index.php?link=incluir">Projetos</a></li>
+					<li class="nav-item"><a class="dropdown-item nav-preto-celular" href="contas/contas_index.php?link=incluir">Prospecções</a></li>
+					<li class="nav-item"><a class="dropdown-item nav-preto-celular" href="contas/contas_index.php?link=incluir">Segmentos</a></li-->
+					<li class="nav-item dropdown open">
+						<a class="nav-link link dropdown-toggle" href="#" data-toggle="dropdown-submenu" aria-expanded="true">MENU</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item nav-preto-celular" href="http://localhost:8888/sistema/pessoas.php?link=aguardando">Aguardando</a>
+							<a class="dropdown-item nav-preto-celular" href="http://localhost:8888/sistema/categorias.php?link=resultado">Categorias</a>
+							<a class="dropdown-item nav-preto-celular" href="http://localhost:8888/sistema/empresas.php?link=resultado">Empresas</a>
+							<a class="dropdown-item nav-preto-celular" href="http://localhost:8888/sistema/etapas.php?link=resultado">Etapas</a>
+							<a class="dropdown-item nav-preto-celular" href="http://localhost:8888/sistema/pessoas.php?link=resultado">Pessoas</a>
+							<a class="dropdown-item nav-preto-celular" href="http://localhost:8888/sistema/projeto.php?link=resultado">Projetos</a>
+							<a class="dropdown-item nav-preto-celular" href="http://localhost:8888/sistema/prospeccao.php?link=resultado">Prospecção</a>
+							<a class="dropdown-item nav-preto-celular" href="http://localhost:8888/sistema/segmentos.php?link=resultado">Segmentos</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						Bem vindo <?php echo htmlentities($_SESSION['username']); ?>!
+					</li>
+					<li class="nav-item nav-btn">
+						<a class="nav-link btn btn-info-outline btn-info" href="includes/logout.php">SAIR</a>
+					</li>
+				</ul>
+				<button hidden="" class="navbar-toggler navbar-close nav-preto-celular" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+					<div class="close-icon"></div>
+				</button>
+
+			</div>
+		</div>
+
+	</div>
+</nav>

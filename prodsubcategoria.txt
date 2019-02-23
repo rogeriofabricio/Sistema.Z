@@ -1,0 +1,44 @@
+39;Access Point
+28;Acessório
+46;Acessórios para Rack
+14;All Weather
+27;All-in-One
+5;Amplificador
+11;Angular LCR
+9;Audio Tools
+15;Booking Shelf
+40;Condicionador de Energia
+45;Conector
+32;Controle Remoto
+21;Controls
+8;Extensor
+30;Extensor I/O
+24;Gateway
+19;HDMI
+12;In-Ceiling
+13;In-Wall
+47;IR
+34;Keypad
+7;Matrix
+31;Media Center
+26;Módulo Dimmer
+25;Modulo Relé
+6;Multiroom
+17;Pendente
+44;Plug
+4;Receiver
+23;Rede
+37;Routeador
+42;RS232
+29;Smart Host
+20;Speakers
+10;Splitters / Scalers
+18;Subwoofers
+35;Switch
+38;Switch
+43;Tomada para Rack
+16;Torre
+33;Touch
+22;VideoNet
+36;Wireless Keypad
+41;Zigbee

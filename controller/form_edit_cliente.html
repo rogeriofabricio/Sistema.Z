@@ -1,0 +1,39 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Editar Dados do Cliente</h1>
+
+<form form name='cliente' action='estoque.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Nome do Cliente</label>
+      <input type="text" class="form-control" id="validationCustom01" name="clienteNome" value="<?php echo $clienteNome ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02" class="corTitulo">Celular</label>
+      <input type="text" class="form-control" id="validationCustom02" name="clienteCelular" value="<?php echo $clienteCelular ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom03" class="corTitulo">E-mail</label>
+      <input type="text" class="form-control" id="validationCustom03" name="clienteEmail" value="<?php echo $clienteEmail ?>" aria-describedby="inputGroupPrepend" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom05" class="corTitulo">CPF</label>
+      <input type="text" class="form-control" id="validationCustom04" name="clienteCPF" value="<?php echo $clienteCPF ?>" aria-describedby="inputGroupPrepend" required>
+    </div>
+  </div>
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer07' name='clienteId' value="<?php echo $clienteId ?>" >
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='atualizarCliente' >
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+
+</form>
+      

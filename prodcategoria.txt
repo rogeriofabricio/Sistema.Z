@@ -1,0 +1,9 @@
+10;Accessories
+4;Cables
+5;Controls
+6;Home Automation
+7;Interfaces
+1;Media Distribution
+8;Networks
+9;Protections
+2;Speakers

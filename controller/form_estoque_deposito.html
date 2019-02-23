@@ -1,0 +1,70 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+.colorOpt{
+  color: #333;
+}
+.bkg-color{
+  background-color: #333;
+}
+optgroup[label]{
+  color: #333;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Depósito</h1>
+
+<form form name='deposito' action='estoque.php' method='GET' id="needs-validation" novalidate>
+    <div class="col-md-4 mb-3">
+      <label for="exampleFormControlSelect4"  class="corTitulo">Produto</label>
+      <select class="form-control" id="idProduto"  name="idProduto">
+        <?php
+
+          // Consulta fabricante
+          $sql_select = "SELECT * FROM produtos ORDER BY prod_modelo ASC";
+
+          try{
+
+            $query_select = $conecta->prepare($sql_select);
+            $query_select->execute();
+
+            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+          } catch(PDOexception $error_select) {
+            echo 'Erro ao selecionar'.$error_insert->getMessage();
+          }
+
+          if($count == '0'){
+
+            echo 'Nada encontrado.';
+
+          }else{
+
+            foreach($resultado_query as $res){
+
+              $produtoId      = $res['id'];
+              $produtoModelo  = $res['prod_modelo'];
+
+              echo "<option value='$produtoId'>$produtoModelo</option>";
+
+          } 
+        }
+        ?>
+      </select>
+    </div>
+
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom01" class="corTitulo">Quantidade</label>
+      <input type="text" class="form-control" id="validationCustom02" name="depQuant" placeholder="Digite a quantidade" required>
+    </div>
+
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='salvarProdutDeposito' >
+    <button class="btn btn-primary" type="submit" value="salvar">Salvar</button>
+  </div>
+
+</form>

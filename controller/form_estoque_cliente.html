@@ -1,0 +1,37 @@
+<STYlE>
+.corTitulo{
+  color: #000;
+}
+.padding{
+  padding: 30px 0 10px 15px;
+}
+</STYlE>
+<h1 style="margin-top: -80px;">Novo Cliente</h1>
+
+<form form name='empresa' action='estoque.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01" class="corTitulo">Nome</label>
+      <input type="text" class="form-control" id="validationCustom01" name="clienteNome" placeholder="Digite o nome com sobrenome" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02" class="corTitulo">Celular</label>
+      <input type="text" class="form-control" id="validationCustom02" name="clienteCelular" placeholder="Digite o número do celular" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom03" class="corTitulo">E-mail</label>
+      <input type="text" class="form-control" id="validationCustom03" name="clienteEmail" placeholder="exemplo@exemplo.com.br" aria-describedby="inputGroupPrepend" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom04" class="corTitulo">CPF</label>
+      <input type="text" class="form-control" id="validationCustom03" name="clienteCPF" placeholder="Sem pontos ou hífem" aria-describedby="inputGroupPrepend" required>
+    </div>
+  </div>
+
+  <div class="col-md-12 mb-3 padding">
+    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='salvarCliente' >
+    <button class="btn btn-primary" type="submit">Salvar</button>
+    
+  </div>
+
+</form>

@@ -1,0 +1,58 @@
+<STYLE>
+/** Zafiro Nav Celular **/
+.nav-preto-celular {
+	background-color: #000;
+	color: #FFF;
+}
+
+.nav-preto-celular li{
+	color: #FFF;
+}
+</STYLE>
+
+<nav class="navbar navbar-dropdown navbar-fixed-top nav-preto-celular">
+	<div class="container">
+
+		<div class="mbr-table">
+			<div class="mbr-table-cell" style="height: 70px;">
+
+				<div class="navbar-brand">
+					<a href="http://localhost:8888/sistema/logged.php" class="navbar-logo"><img src="http://localhost:8888/sistema/assets/images/logo_zafiro.png" alt="Zafiro" style="height: 30px;"></a>
+					<a class="navbar-caption text-info" href="http://localhost:8888/sistema/logged.php">online</a>
+				</div>
+
+			</div>
+
+
+			<div class="mbr-table-cell nav-preto-celular" style="height: 70px;">
+
+				<button class="navbar-toggler pull-xs-right hidden-md-up nav-preto-celular" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+					<div class="hamburger-icon"></div>
+				</button>
+
+				<ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm nav-preto-celular" id="exCollapsingNavbar">
+					<li class="nav-item dropdown open">
+						<a class="nav-link link dropdown-toggle" href="#" data-toggle="dropdown-submenu" aria-expanded="true">MENU</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item nav-preto-celular" href="#">Dados</a>
+							<a class="dropdown-item nav-preto-celular" href="#">Projetos</a>
+							<a class="dropdown-item nav-preto-celular" href="#">Contatos</a>
+							<a class="dropdown-item nav-preto-celular" href="#">Indicação</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						Bem vindo <?php echo htmlentities($_SESSION['username']); ?>!
+					</li>
+					<li class="nav-item nav-btn">
+						<a class="nav-link btn btn-info-outline btn-info" href="includes/logout.php">SAIR</a>
+					</li>
+				</ul>
+				<button hidden="" class="navbar-toggler navbar-close nav-preto-celular" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+					<div class="close-icon"></div>
+				</button>
+
+			</div>
+		</div>
+
+	</div>
+</nav>
