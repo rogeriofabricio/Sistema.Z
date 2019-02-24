@@ -33,9 +33,10 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col" style='text-align: center;'>#</th>
                 <th scope="col" style='text-align: center;'>Data</th>
+                <th scope="col" style='text-align: center;'>NF</th>
                 <th scope="col">Fornecedor</th>
+                <th scope="col">Deposito</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -44,9 +45,31 @@
           foreach($resultado_query as $res){
 
             $depCestaId   = $res['id'];
-            $idFornecedor = $res['id_fornecedor'];
-            $nf_numero    = $res['nf_numero'];
+            $nfNumero     = $res['nf_numero'];
             $faturadoEm   = $res['faturadoEm'];
+            $idDeposito   = $res['id_deposito'];
+
+            //Consulta o nome do produtos na cesta
+            $sql_select_idFornecedor = "SELECT id_fornecedor, id_deposito FROM estoque_cesta WHERE nf_numero = $nfNumero";
+
+            try{
+
+              $query_select_idFornecedor = $conecta->prepare($sql_select_idFornecedor);
+              $query_select_idFornecedor->execute();
+
+              $resultado_query_idFornecedor = $query_select_idFornecedor->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch(PDOexception $error_select_idFornecedor) {
+              echo 'Erro ao selecionar'.$error_insert_idFornecedor->getMessage();
+            }
+
+            foreach($resultado_query_idFornecedor as $res_idFornecedor){
+
+              $idFornecedor    = $res_idFornecedor['id_fornecedor'];
+              $idDeposito      = $res_idFornecedor['id_deposito'];
+
+            }
+            //Fim seleção produto
 
 
             //Consulta o nome do fornecedor
@@ -71,7 +94,28 @@
             }
             //Fim seleção produto
 
-            echo "<tbody> <tr> <td style='text-align: center;'>".$faturadoEm."</td> <td style='text-align: center;'>".$nf_numero."</td> <td>".$fornecedorNome."</td> <td>  </tr>";
+            //Consulta o nome do deposito
+            $sql_select_deposito = "SELECT deposito_nome FROM estoque_deposito WHERE id = $idDeposito";
+
+            try{
+
+              $query_select_deposito = $conecta->prepare($sql_select_deposito);
+              $query_select_deposito->execute();
+
+              $resultado_query_deposito = $query_select_deposito->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch(PDOexception $error_select_deposito) {
+              echo 'Erro ao selecionar'.$error_insert_deposito->getMessage();
+            }
+
+            foreach($resultado_query_deposito as $res_deposito){
+
+              $depositoNome  = $res_deposito['deposito_nome'];
+
+            }
+            //Fim seleção produto
+
+            echo "<tbody> <tr> <td style='text-align: center;'>".$faturadoEm."</td> <td style='text-align: center;'>".$nfNumero."</td> <td>".$fornecedorNome."</td> <td>".$depositoNome."</td> <td>Abrir</td>  </tr>";
             
           }
         }
@@ -81,8 +125,8 @@
     //<a href='deposito.php?link=editarOrcamento&controle=".$orcControle."'> <span class='material-icons' style='color: #000;'>mode_edit</span> </a> <a href='orcamento.php?link=pre_excluirOrcamento&controle=".$orcControle."'> <span class='material-icons' style='color: #000;'>delete</span> </a>
 
 
-    //Iniciio cadastroOrcamento
-    //Selecionar cliente
+    //Inicio cadastroDeposito
+    //Selecionar Fornecedor
     case 'entradaNF':
 
       date_default_timezone_set('America/Sao_Paulo');
@@ -152,28 +196,30 @@
         include_once'controller/form_entradaNF_cadastrar_02.html';
 
       } else {
-        echo 'Erro ao selecionar o cliente.';
+        echo 'Erro ao selecionar o fornecedor.';
       }
 
       break;
 
 
 
-    case 'adicionarProduto':
+    case 'adicionarProdutoItemCestaDeposito':
 
-      $controle     = $_GET['controle'];
-      $idCliente    = $_GET['idCliente'];
+      $nfNumero     = $_GET['nfNumero'];
+      $idFornecedor = $_GET['idFornecedor'];
 
-      if ($idCliente != null && $controle != null) {
+      if ($idFornecedor != null && $nfNumero != null) {
 
-        $clienteNome  = $_GET['clienteNome'];
-        $idProduto    = $_GET['idProduto'];
-        $controle     = $_GET['controle'];
-        // echo $controle. '</br>';
-        // echo $idCliente. '</br>';
-        // echo $idProduto. '</br>';
+        $fornecedorNome  = $_GET['fornecedorNome'];
+        $idProduto       = $_GET['idProduto'];
+
+        $faturadoEm      = $_GET['faturadoEm'];
+        $idDeposito      = $_GET['idDeposito'];
+        $depositoNome    = $_GET['depositoNome'];
+        $valorCusto      = $_GET['valorCusto'];
+        $quantProduto    = $_GET['quantProduto'];
       
-        include_once'controller/form_orcamento_cadastrar_02.html';
+        include_once'controller/form_entradaNF_cadastrar_02.html';
 
         if ($idProduto != null) {
 
@@ -181,20 +227,16 @@
 
           $criadoEm       = date ("Y-m-d H:i:s");
           $atualizadoEm   = date ("Y-m-d H:i:s");
-          $controle       = $_GET['controle'];
-          $idCliente      = $_GET['idCliente'];
-          $idProduto      = $_GET['idProduto'];
-          $quantProduto   = $_GET['quantProduto'];
-          $idSolucao      = $_GET['idSolucao'];
+          $id_pessoa      = htmlentities($_SESSION['username']);
 
           try{
 
-            $sql_insert  = "INSERT INTO orc_cesta (criadoEm, atualizadoEm, orc_controle, id_cliente, id_produto, orc_quant, id_solucao) "; 
-            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$controle', '$idCliente', '$idProduto', '$quantProduto', '$idSolucao')";
+            $sql_insert  = "INSERT INTO estoque_cesta (criadoEm, atualizadoEm, id_pessoa, nf_numero, faturadoEm, id_fornecedor, id_produto, item_quant, id_deposito, valor_custo) "; 
+            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$id_pessoa', '$nfNumero', '$faturadoEm', '$idFornecedor', '$idProduto', '$quantProduto', '$idDeposito', '$valorCusto')";
 
             $conecta->exec($sql_insert);
 
-            include_once'controller/form_orcamento_lista_cesta.html';
+            include_once'controller/form_deposito_lista_cesta.html';
 
           } catch(PDOexception $error_insert) {
             echo 'Erro ao cadastrar'.$error_insert->getMessage();
@@ -207,32 +249,34 @@
         echo 'Erro ao listar os produtos.';
       }
       break;
-      //Fim Selecionar Cliente
+      //Fim Selecionar Fornecedor
 
 
     //Inicio Salvar orçamento
-    case 'orcamentoFechar':
-      if ($link == "orcamentoFechar") {
+    case 'entradaNfFechar':
+      if ($link == "entradaNfFechar") {
 
-        if(isset($_GET['controle'])){
+        if(isset($_GET['nfNumero'])){
 
           date_default_timezone_set('America/Sao_Paulo');
 
-          $criadoEm       = date ("Y-m-d H:i:s");
-          $atualizadoEm   = date ("Y-m-d H:i:s");
-          $controle       = $_GET['controle'];
-          $idCliente      = $_GET['idCliente'];
+          $criadoEm         = date ("Y-m-d H:i:s");
+          $atualizadoEm     = date ("Y-m-d H:i:s");
+          $id_pessoa        = htmlentities($_SESSION['username']);
+          $nfNumero         = $_GET['nfNumero'];
+          $faturadoEm       = $_GET['faturadoEm'];
+          $idDeposito       = $_GET['idDeposito'];
 
           try{
 
-            $sql_insert  = "INSERT INTO orc_fechado (criadoEm, atualizadoEm, orc_controle, id_cliente) "; 
-            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$controle', '$idCliente')";
+            $sql_insert  = "INSERT INTO estoque_nf (criadoEm, atualizadoEm, id_pessoa, nf_numero, faturadoEm, id_deposito) "; 
+            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$id_pessoa', '$nfNumero', '$faturadoEm', '$idDeposito')";
 
             $conecta->exec($sql_insert);
 
-            include_once'menu/nav_sub_menu_estoque.html';
+            include_once'menu/nav_sub_menu_deposito.html';
 
-            echo "<span style='color: black; margin-left: 60px;'> Orçamento fechado com sucesso!</span></br></br></br>";
+            echo "<span style='color: black; margin-left: 60px;'> NF incluida com sucesso!</span></br></br></br>";
 
           } catch(PDOexception $error_insert) {
             echo 'Erro ao cadastrar'.$error_insert->getMessage();

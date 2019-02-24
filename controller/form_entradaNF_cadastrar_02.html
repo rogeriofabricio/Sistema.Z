@@ -2,61 +2,52 @@
 .corTitulo{
   color: #000;
 }
+.corBranco{
+  color: #FFF;
+}
 .padding{
   padding: 30px 0 10px 15px;
 }
 </STYlE>
 <h1 style="margin-top: -80px;">Entrada de Produtos Por NF</h1>
 
-<form form name='orcamento' action='orcamento.php' method='GET' id="needs-validation" novalidate>
+<form form name='deposito' action='deposito.php' method='GET' id="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom01"  class="corTitulo">Estoque</label>
+      <input type="text" name="depositoNome" id='validationServer01' class="form-control" value='<?php echo $depositoNome ?>' />
+    </div>
+
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom02"  class="corTitulo">Faturando Em</label>
+      <input type="text" name="faturadoEm" id='validationServer02' class="form-control" value='<?php echo $faturadoEm ?>' />
+    </div>
+
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom03"  class="corTitulo">Número da NF</label>
+       <input type="text" name="nfNumero" id='validationServer04' class="form-control" value='<?php echo $nfNumero ?>' />
+    </div>
+
+    <div class="col-md-5 mb-3">
+      <label for="validationCustom04"  class="corTitulo">Fornecedor</label>
+      <input type="text" name="fornecedorNome" id='validationServer05' class="form-control" value='<?php echo $fornecedorNome ?>' />
+      </div>
+  </div>
+
   <div class="form-row">
     <div class="col-md-12 mb-3">
-      <label for="validationCustom02" class="form-control"><?php echo $clienteNome ?></label>
+      <label class="corTitulo">Incluir Itens:</label>
     </div>
   </div>
+
   <div class="form-row">
+    <!-- <div class="col-md-2 mb-3">
+      <label for="validationCustom05" class="corTitulo">Código</label>
+      <input type="text" class="form-control" id='validationServer06' name="quantProduto" required>
+    </div> -->
 
     <div class="col-md-4 mb-3">
-      <label for="exampleFormControlSelect1"  class="corTitulo">Solução</label>
-      <select class="form-control" id="idSolucao"  name="idSolucao">
-        <?php
-
-          // Consulta produtos
-          $sql_select = "SELECT * FROM orc_solucao ORDER BY solucao_nome ASC";
-
-          try{
-
-            $query_select = $conecta->prepare($sql_select);
-            $query_select->execute();
-
-            $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
-            $count = $query_select->rowCount(PDO::FETCH_ASSOC);
-
-          } catch(PDOexception $error_select) {
-            echo 'Erro ao selecionar'.$error_insert->getMessage();
-          }
-
-          if($count == '0'){
-
-            echo 'Nada encontrado.';
-
-          }else{
-
-            foreach($resultado_query as $res){
-
-              $solucaoId    = $res['id'];
-              $solucaoNome  = $res['solucao_nome'];
-
-              echo "<option value='$solucaoId'>$solucaoNome</option>";
-
-          } 
-        }
-        ?>
-      </select>
-    </div>
-
-    <div class="col-md-4 mb-3">
-      <label for="exampleFormControlSelect2"  class="corTitulo">Produto</label>
+      <label for="exampleFormControlSelect1"  class="corTitulo">Produto</label>
       <select class="form-control" id="idProduto"  name="idProduto">
         <?php
 
@@ -94,25 +85,36 @@
       </select>
     </div>
 
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom02" class="corTitulo">Quantidade</label>
-      <input type="text" class="form-control" id="validationCustom02" name="quantProduto" required>
+    <div class="col-md-1 mb-3">
+      <label for="validationCustom06" class="corTitulo">Quant</label>
+      <input type="text" class="form-control" id='validationServer07' name="quantProduto" required>
+    </div>
+
+    <div class="col-md-2 mb-3">
+      <label for="validationCustom07" class="corTitulo">Custo Unitário</label>
+      <input type="text" class="form-control" id='validationServer08' name="valorCusto" required>
+    </div>
+
+    <div class="col-md-2 mb-3">
+      <input type='hidden' class='form-control is-valid' id='validationServer03' name='idDeposito' value='<?php echo $idDeposito ?>' >
+      <input type='hidden' class='form-control is-valid' id='validationServer04' name='idFornecedor' value='<?php echo $idFornecedor ?>' >
+
+      <input type='hidden' class='form-control is-valid' id='validationServer09' name='link' value='adicionarProdutoItemCestaDeposito' >
+      <label for="validationCustom08" class="corBranco">Label</label>
+      <button class="btn btn-primary" type="submit">Adicionar Item</button>
     </div>
   </div>
-  <div class="col-md-2 mb-3 padding">
-    <input type='hidden' class='form-control is-valid' id='validationServer03' name='clienteNome' value='<?php echo $clienteNome ?>' >
-    <input type='hidden' class='form-control is-valid' id='validationServer04' name='idCliente' value='<?php echo $idCliente ?>' >
-    <input type='hidden' class='form-control is-valid' id='validationServer05' name='controle' value='<?php echo $controle ?>' >
-    <input type='hidden' class='form-control is-valid' id='validationServer06' name='link' value='adicionarProduto' >
-    <button class="btn btn-primary" type="submit">Adicionar Item</button>
-  </div>
+
 </form>
 
-<form action='orcamento.php' method=get >
-  <div class="col-md-2 mb-3 padding">
-    <input type='hidden' class='form-control is-valid' id='validationServer04' name='idCliente' value='<?php echo $idCliente ?>' >
-    <input type='hidden' class='form-control is-valid' id='validationServer05' name='controle' value='<?php echo $controle ?>' >
-    <input type='hidden' class='form-control is-valid' id='validationServer02' name='link' value='orcamentoFechar' >
-    <button class='btn btn-primary' type='submit'>Finalizar Orçamento</button>
+<form action='deposito.php' method=get >
+  <div class="form-row">
+    <div class="col-md-12 mb-3 padding">
+      <input type='hidden' class='form-control is-valid' id='validationServer10' name='idDeposito' value='<?php echo $idDeposito ?>' >
+      <input type='hidden' class='form-control is-valid' id='validationServer11' name='nfNumero' value='<?php echo $nfNumero ?>' >
+      <input type='hidden' class='form-control is-valid' id='validationServer11' name='faturadoEm' value='<?php echo $faturadoEm ?>' >
+      <input type='hidden' class='form-control is-valid' id='validationServer12' name='link' value='entradaNfFechar' >
+      <button class='btn btn-primary' type='submit'>Finalizar Orçamento</button>
+    </div>
   </div>
 </form>

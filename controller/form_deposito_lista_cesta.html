@@ -1,0 +1,76 @@
+
+
+      <div class="col-md-12 mb-3" style="margin-top: 30px;">
+
+      <?php
+
+        // Consulta produto
+        $sql_select = "SELECT * FROM estoque_cesta WHERE nf_numero = $nfNumero";
+
+        try{
+
+          $query_select = $conecta->prepare($sql_select);
+          $query_select->execute();
+
+          $resultado_query = $query_select->fetchAll(PDO::FETCH_ASSOC);
+          $count = $query_select->rowCount(PDO::FETCH_ASSOC);
+
+        } catch(PDOexception $error_select) {
+          echo 'Erro ao selecionar'.$error_insert->getMessage();
+        }
+
+        if($count == '0'){
+
+          echo '<br /><br />Nada encontrado.';
+
+        } else {
+      ?>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" style='text-align: center;'>Item</th>
+                <th scope="col">Produto</th>
+                <th scope="col" style='text-align: center;'>Quant</th>
+                <th scope="col" style='text-align: center;'>Custo Unitário</th>
+              </tr>
+            </thead>
+      <?php
+
+          $item = 0;
+
+          foreach($resultado_query as $res){
+
+            $item         = $item + 1;
+            $depCestaId   = $res['id'];
+            $nfNumero     = $res['nf_numero'];
+            $idProduto    = $res['id_produto'];
+            $itemQuant    = $res['item_quant'];
+            $valorCusto   = $res['valor_custo'];
+
+
+            //Inicio da seleção da produto
+            $sql_select_prod = "SELECT * FROM produtos WHERE id = $idProduto";
+
+            try{
+
+              $query_select_prod = $conecta->prepare($sql_select_prod);
+              $query_select_prod->execute();
+
+              $resultado_query_prod = $query_select_prod->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch(PDOexception $error_select_prod) {
+              echo 'Erro ao selecionar'.$error_insert_prod->getMessage();
+            }
+
+            foreach($resultado_query_prod as $res_prod){
+
+              $produtoId            = $res_prod['id'];
+              $produtoModelo        = $res_prod['prod_modelo'];
+
+            }
+            //Fim seleção produto
+
+            echo "<tbody> <tr> <td style='text-align: center;'>".$item."</td> <td>".$produtoModelo."</td> <td style='text-align: center;'>".$itemQuant."</td> <td style='text-align: center;'>".$valorCusto."</td> </tr>";
+            
+          }
+        }
