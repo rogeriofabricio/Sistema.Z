@@ -115,14 +115,12 @@
             }
             //Fim seleção produto
 
-            echo "<tbody> <tr> <td style='text-align: center;'>".$faturadoEm."</td> <td style='text-align: center;'>".$nfNumero."</td> <td>".$fornecedorNome."</td> <td>".$depositoNome."</td> <td>Abrir</td>  </tr>";
-            
+            echo "<tbody> <tr> <td style='text-align: center;'>".$faturadoEm."</td> <td style='text-align: center;'>".$nfNumero."</td> <td>".$fornecedorNome."</td> <td>".$depositoNome."</td> <td><a href='deposito.php?link=editarOrcamento&controle=".$nfNumero."'> <span class='material-icons' style='color: #000;'>search</span> </a></td>  </tr>";
+
           }
         }
       } 
     break;
-
-    //<a href='deposito.php?link=editarOrcamento&controle=".$orcControle."'> <span class='material-icons' style='color: #000;'>mode_edit</span> </a> <a href='orcamento.php?link=pre_excluirOrcamento&controle=".$orcControle."'> <span class='material-icons' style='color: #000;'>delete</span> </a>
 
 
     //Inicio cadastroDeposito
@@ -142,12 +140,29 @@
     //Inicio SelecionarCliente
     case 'selecionarFornecedor':
 
-      if(isset($_GET['idFornecedor'])){
+      if(isset($_GET['idFornecedor']) && isset($_GET['nf_numero'])){
 
         $idDeposito    = $_GET['idDeposito'];
         $idFornecedor  = $_GET['idFornecedor'];
         $faturadoEm    = $_GET['faturadoEm'];
         $nfNumero      = $_GET['nf_numero'];
+
+        //Validar que seja uma NF nova
+        $sql_select_nf = "SELECT nf_numero FROM estoque_cesta WHERE nf_numero = $nfNumero";
+
+        try{
+
+          $query_select_nf = $conecta->prepare($sql_select_nf);
+          $query_select_nf->execute();
+
+          $resultado_query_nf = $query_select_nf->fetchAll(PDO::FETCH_ASSOC);
+          $count_nf = $query_select_nf->rowCount(PDO::FETCH_ASSOC);
+
+        } catch(PDOexception $error_select_nf) {
+          echo 'Erro ao selecionar'.$error_insert_nf->getMessage();
+        }
+
+        
 
         //Selecionar deposito
         $sql_select_deposito = "SELECT deposito_nome FROM estoque_deposito WHERE id = $idDeposito";
@@ -191,12 +206,13 @@
         }
       }
 
-      if ($fornecedorNome != null) {
+      if ($fornecedorNome != null && $count_nf == 0) {
       
         include_once'controller/form_entradaNF_cadastrar_02.html';
 
       } else {
-        echo 'Erro ao selecionar o fornecedor.';
+        echo 'Número de NF já cadastrada no sistema!<br><br>';
+        echo '<a href="deposito.php?link=entradaNF"> <span style="color: #000;">Voltar</span> </a>';
       }
 
       break;
