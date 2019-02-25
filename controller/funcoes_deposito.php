@@ -243,7 +243,7 @@
 
           $criadoEm       = date ("Y-m-d H:i:s");
           $atualizadoEm   = date ("Y-m-d H:i:s");
-          $id_pessoa      = htmlentities($_SESSION['username']);
+          $id_pessoa      = 24; //htmlentities($_SESSION['username']);
 
           try{
 
@@ -278,24 +278,48 @@
 
           $criadoEm         = date ("Y-m-d H:i:s");
           $atualizadoEm     = date ("Y-m-d H:i:s");
-          $id_pessoa        = htmlentities($_SESSION['username']);
+          $id_pessoa        = 24; //htmlentities($_SESSION['username']);
           $nfNumero         = $_GET['nfNumero'];
           $faturadoEm       = $_GET['faturadoEm'];
           $idDeposito       = $_GET['idDeposito'];
 
+
+          //Validar que seja uma NF nova
+        $sql_select_nf = "SELECT nf_numero FROM estoque_cesta WHERE nf_numero = $nfNumero";
+
           try{
 
-            $sql_insert  = "INSERT INTO estoque_nf (criadoEm, atualizadoEm, id_pessoa, nf_numero, faturadoEm, id_deposito) "; 
-            $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$id_pessoa', '$nfNumero', '$faturadoEm', '$idDeposito')";
+            $query_select_nf = $conecta->prepare($sql_select_nf);
+            $query_select_nf->execute();
 
-            $conecta->exec($sql_insert);
+            $resultado_query_nf = $query_select_nf->fetchAll(PDO::FETCH_ASSOC);
+            $count_nf = $query_select_nf->rowCount(PDO::FETCH_ASSOC);
 
-            include_once'menu/nav_sub_menu_deposito.html';
+          } catch(PDOexception $error_select_nf) {
+            echo 'Erro ao selecionar'.$error_insert_nf->getMessage();
+          }
 
-            echo "<span style='color: black; margin-left: 60px;'> NF incluida com sucesso!</span></br></br></br>";
 
-          } catch(PDOexception $error_insert) {
-            echo 'Erro ao cadastrar'.$error_insert->getMessage();
+          if ($fornecedorNome != null && $count_nf == 0) {
+      
+            try{
+
+              $sql_insert  = "INSERT INTO estoque_nf (criadoEm, atualizadoEm, id_pessoa, nf_numero, faturadoEm, id_deposito) "; 
+              $sql_insert .= "VALUES ('$criadoEm', '$atualizadoEm', '$id_pessoa', '$nfNumero', '$faturadoEm', '$idDeposito')";
+
+              $conecta->exec($sql_insert);
+
+              include_once'menu/nav_sub_menu_deposito.html';
+
+              echo "<span style='color: black; margin-left: 60px;'> NF incluida com sucesso!</span></br></br></br>";
+
+            } catch(PDOexception $error_insert) {
+              echo 'Erro ao cadastrar'.$error_insert->getMessage();
+            }
+
+          } else {
+            echo 'Número de NF já cadastrada no sistema!<br><br>';
+            // echo '<a href="deposito.php?link=entradaNF"> <span style="color: #000;">Voltar</span> </a>';
           }
 
         }
