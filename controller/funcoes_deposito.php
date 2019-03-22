@@ -268,6 +268,28 @@
       //Fim Selecionar Fornecedor
 
 
+    case 'excluirItemCestaDeposito':
+
+      $depCestaId   = $_GET['id'];
+
+      if ($depCestaId != null) {
+
+        try{
+
+          $sql_insert  = "DELETE FROM estoque_cesta WHERE id = $depCestaId ";
+
+          $conecta->exec($sql_insert);
+
+          include_once'controller/form_entradaNF_cadastrar_02.html';
+
+        } catch(PDOexception $error_insert) {
+            echo 'Erro ao cadastrar'.$error_insert->getMessage();
+        }
+      }
+      break;
+      //Fim Selecionar Fornecedor
+
+
     //Inicio Salvar orçamento
     case 'entradaNfFechar':
       if ($link == "entradaNfFechar") {

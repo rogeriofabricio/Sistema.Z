@@ -51,8 +51,8 @@
       <select class="form-control" id="idProduto"  name="idProduto">
         <?php
 
-          // Consulta produtos
-          $sql_select = "SELECT * FROM produtos ORDER BY prod_modelo ASC";
+          // Consulta produtos com base no fornecedor
+          $sql_select = "SELECT * FROM produtos WHERE id_fornecedor = $idFornecedor ORDER BY prod_modelo ASC";
 
           try{
 
@@ -84,6 +84,7 @@
         ?>
       </select>
     </div>
+
 
     <div class="col-md-1 mb-3">
       <label for="validationCustom06" class="corTitulo">Quant</label>
